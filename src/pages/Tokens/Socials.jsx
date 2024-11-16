@@ -1,24 +1,35 @@
-import React from "react";
-import { Card, Flex, Text, Group, Divider, ActionIcon } from "@mantine/core";
+import { Card, Flex, Text, Divider, ActionIcon } from "@mantine/core";
 import {
-  IconBrandTwitter,
   IconBrandFacebook,
   IconBrandReddit,
   IconBrandTelegram,
   IconBrandGithub,
+  IconBrandX,
+  IconBrandInstagram,
 } from "@tabler/icons-react";
 
-export default function Socials() {
+export default function Socials({ data }) {
+  console.log(data);
+
+  function normalizeUrl(url) {
+    if (!url) return "";
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+    return `https://${url}`;
+  }
   const socialLinks = [
     {
-      icon: <IconBrandTwitter size={20} />,
-      platform: "Followers",
+      icon: <IconBrandX size={20} />,
+      platform: "X",
       label: "X",
+      link: data.socials?.twitter[0] || "",
     },
     {
-      icon: <IconBrandFacebook size={20} />,
-      platform: "Likes",
-      label: "Facebook",
+      icon: <IconBrandInstagram size={20} />,
+      platform: "Instagram",
+      label: "Instagram",
+      link: data.socials?.instagram[0] || "",
     },
     {
       icon: <IconBrandReddit size={20} />,
@@ -27,8 +38,9 @@ export default function Socials() {
     },
     {
       icon: <IconBrandTelegram size={20} />,
-      platform: "Members",
+      platform: "Telegram",
       label: "Telegram",
+      link: data.socials?.telegram[0] || "",
     },
   ];
 
@@ -110,6 +122,10 @@ export default function Socials() {
               size="lg"
               variant="light"
               radius="xl"
+              component="a" // Render as <a> element
+              href={normalizeUrl(link.link)} // Set the link URL
+              target="_blank" // Open in a new tab
+              rel="noopener noreferrer"
               //   style={{ color: "white" }}
             >
               {link.icon}

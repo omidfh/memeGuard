@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Text, Button, Center, Divider, Stack } from "@mantine/core";
 import GaugeChart from "react-gauge-chart";
 
-export default function Score() {
+export default function Score({ holders }) {
   const score = 660; // Example score
   const minScore = 300;
   const maxScore = 850;
@@ -28,6 +28,7 @@ export default function Score() {
   // Extract colors
   const colors = ranges.map((range) => range.color);
 
+  console.log(holders);
   return (
     <Card shadow="sm" radius="md" padding="lg" style={{ maxWidth: 360 }}>
       {/* Title */}

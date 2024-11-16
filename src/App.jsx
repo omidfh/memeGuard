@@ -1,9 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MantineProvider } from "@mantine/core";
 import { useEffect } from "react";
-import Home from "./pages/index/index";
+import Home from "./pages/index/Index";
 import AppLayout from "./components/AppLayout";
 import Token from "./pages/Tokens/Token";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// Create a QueryClient instance
+const queryClient = new QueryClient();
 
 function App() {
   useEffect(() => {
@@ -26,14 +30,16 @@ function App() {
 
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
-      <Router>
-        <AppLayout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/token" element={<Token />} />
-          </Routes>
-        </AppLayout>
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <AppLayout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/token/:id" element={<Token />} />
+            </Routes>
+          </AppLayout>
+        </Router>
+      </QueryClientProvider>
     </MantineProvider>
   );
 }
