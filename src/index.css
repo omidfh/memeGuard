@@ -1,0 +1,82 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed; /* Keep the background fixed even while scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Change from 100vh to 100% to adapt dynamically */
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 768" width="1024" height="768"><rect x="0" y="0" width="1024" height="768" fill="%23001220"/><g fill="none" stroke="%231f2dba" stroke-width="2"><circle r="169" cx="486" cy="454"/><circle r="94" cx="704" cy="185"/><circle r="159" cx="34" cy="63"/><circle r="134" cx="915" cy="593"/><circle r="94" cx="124" cy="679"/></g></svg>');
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1; /* Keep background behind content */
+  filter: blur(10px); /* Apply blur to the background only */
+}
+
+.content {
+  min-height: 100%; /* Ensure content always fills at least the screen height */
+  width: 100%;
+  z-index: 10; /* Ensure content is above the background */
+  color: white;
+  text-align: center;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
