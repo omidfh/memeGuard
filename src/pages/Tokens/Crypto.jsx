@@ -122,7 +122,7 @@ export default function Crypto({ data, price }) {
                   lineClamp={1}
                   truncate={true}
                 >
-                  {"..." + id.slice(10, 18) + "..."}
+                  {id.slice(0, 5) + "..." + id.slice(id.length - 5, -1)}
                 </Text>
               </Box>
             </Flex>
