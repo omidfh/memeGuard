@@ -30,9 +30,15 @@ export default function Score({ holders }) {
 
   console.log(holders);
   return (
-    <Card shadow="sm" radius="md" padding="lg" maw={360}>
+    <Card
+      shadow="sm"
+      radius="md"
+      padding="lg"
+      maw={360}
+      bg={"rgba(236, 240, 241, 0.05)"}
+    >
       {/* Title */}
-      <Text weight={600} size="sm" mb="xs">
+      <Text weight={600} size="sm" mb="xs" color="white">
         Rug Check
       </Text>
 
@@ -46,8 +52,8 @@ export default function Score({ holders }) {
             colors={colors}
             percent={percentage}
             arcPadding={0.02}
-            needleColor="#464A4F"
-            textColor="#000000"
+            needleColor="#c4d0df"
+            textColor="#ffffff"
             formatTextValue={() => `${score}`}
           />
         </div>
@@ -55,10 +61,10 @@ export default function Score({ holders }) {
 
       {/* Credit Score Details */}
       <Stack align="center" spacing="xs" mt="sm">
-        <Text size="sm" weight={600}>
+        <Text size="sm" weight={600} color="white">
           Not Secure
         </Text>
-        <Text size="xs" color="dimmed">
+        <Text size="xs" color="gray.2">
           Last Check on 21 Apr
         </Text>
       </Stack>

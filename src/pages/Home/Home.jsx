@@ -9,6 +9,7 @@ import {
   Space,
   Image,
   ActionIcon,
+  Flex,
 } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { IconClipboard, IconSearch } from "@tabler/icons-react";
@@ -39,8 +40,6 @@ export default function Home() {
     setEnabled(true);
     refetch();
   };
-
-  console.log(data);
 
   // Handle the response from the query
   useEffect(() => {
@@ -85,35 +84,44 @@ export default function Home() {
       </Text>
       {/* Search Bar */}
       <Center mt="xl" px={"md"}>
-        <TextInput
-          placeholder="Search for a meme coin..."
-          size="md"
-          radius={"xl"}
-          icon={
-            <ActionIcon
-              variant="subtle"
-              onClick={handlePaste}
-              radius={50}
-              color="blue"
-            >
-              <IconClipboard size={20} />
-            </ActionIcon>
-          }
-          value={searchQuery}
-          onChange={(event) => setSearchQuery(event.currentTarget.value)}
-          style={{ width: "100%", maxWidth: 500 }}
-          rightSection={
-            <ActionIcon
-              variant="subtle"
-              right={10}
-              onClick={handleSearch}
-              radius={50}
-              color="blue"
-            >
-              <IconSearch size={20} onClick={handleSearch} />
-            </ActionIcon>
-          }
-        />
+        <form onSubmit={handleSearch} style={{ width: "100%" }}>
+          <Flex justify={"center"}>
+            <TextInput
+              placeholder="Search for a meme coin..."
+              size="md"
+              radius={"xl"}
+              // icon={
+
+              // }
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.currentTarget.value)}
+              style={{ width: "100%", maxWidth: 500 }}
+              rightSection={
+                <Flex gap={15}>
+                  <ActionIcon
+                    variant="subtle"
+                    onClick={handlePaste}
+                    radius={50}
+                    color="blue"
+                    right={10}
+                  >
+                    <IconClipboard size={20} />
+                  </ActionIcon>
+
+                  <ActionIcon
+                    variant="subtle"
+                    onClick={handleSearch}
+                    radius={50}
+                    color="blue"
+                    right={20}
+                  >
+                    <IconSearch size={20} onClick={handleSearch} />
+                  </ActionIcon>
+                </Flex>
+              }
+            />
+          </Flex>
+        </form>
       </Center>
       <Space h="xl" />
       {/* Features Section */}

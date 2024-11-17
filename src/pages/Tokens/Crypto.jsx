@@ -65,6 +65,7 @@ export default function Crypto({ data, price }) {
   return (
     <>
       <Card
+        bg={"rgba(236, 240, 241, 0.05)"}
         shadow="sm"
         padding="lg"
         radius="md"
@@ -75,11 +76,11 @@ export default function Crypto({ data, price }) {
           <Flex align={"center"} gap={6}>
             <Avatar src={data?.logo} radius={100} size={"lg"} />
 
-            <Text size={18} weight={500}>
+            <Text color="white" size={18} weight={500}>
               {data.name}
             </Text>
           </Flex>
-          <Text size={12} color="dimmed">
+          <Text size={12} color="white">
             {price.price} USD
           </Text>
         </Flex>
@@ -89,51 +90,66 @@ export default function Crypto({ data, price }) {
           <Flex direction={"column"} align={"start"} gap={4}>
             {/* Symbol */}
             <Flex align={"center"} justify={"space-between"} w={"100%"}>
-              <Text color="black" size={12} align="centers">
+              <Text color="white" size={12} align="centers">
                 Symbol
               </Text>
-              <Text size={12} maw={100} lineClamp={2} truncate="end" i>
+              <Text
+                color="white"
+                size={12}
+                maw={100}
+                lineClamp={2}
+                truncate="end"
+                i
+              >
                 {data.symbol}
               </Text>
             </Flex>
             {/* ADRESS */}
             <Flex align={"center"} justify={"space-between"} w={"100%"}>
               <Flex align={"center"} gap={4}>
-                <Text color="black" size={12}>
+                <Text color="white" size={12}>
                   Address
                 </Text>
-                <ActionIcon onClick={handleCopy}>
-                  <IconCopy size={12} />
+                <ActionIcon onClick={handleCopy} color="white">
+                  <IconCopy size={12} color="white" />
                 </ActionIcon>
               </Flex>
               <Box>
-                <Text size={12} maw={100} lineClamp={1} truncate={true}>
+                <Text
+                  color="white"
+                  size={12}
+                  maw={100}
+                  lineClamp={1}
+                  truncate={true}
+                >
                   {"..." + id.slice(10, 18) + "..."}
                 </Text>
               </Box>
             </Flex>
             {/* SUPPLY */}
             <Flex align={"center"} justify={"space-between"} w={"100%"}>
-              <Text color="black" size={12}>
+              <Text color="white" size={12}>
                 Supply
               </Text>
-              <Text size={12}>{data.totalSupply.toLocaleString()}</Text>
+              <Text color="white" size={12}>
+                {data.totalSupply.toLocaleString()}
+              </Text>
             </Flex>
             {/* MC */}
             <Flex align={"center"} justify={"space-between"} w={"100%"}>
-              <Text color="black" size={12}>
+              <Text color="white" size={12}>
                 MC
               </Text>
-              <Text size={12}>
+              <Text color="white" size={12}>
                 {(data.totalSupply * price.price).toLocaleString()}
               </Text>
             </Flex>
             {/* OWNER */}
             <Flex align={"center"} justify={"space-between"} w={"100%"}>
-              <Text color="black" size={12}>
+              <Text color="white" size={12}>
                 Owner
               </Text>
-              <Text size={12} align="center">
+              <Text size={12} align="center" color="white">
                 {data.owner && data.owner.length > 10
                   ? data.owner.slice(0, 10) + "..."
                   : data.owner || "----"}

@@ -92,13 +92,13 @@ export default function Socials({ data }) {
 
   return (
     <Card
+      bg={"rgba(236, 240, 241, 0.05)"}
       withBorder
       shadow="sm"
       radius="md"
       style={{
         maxWidth: 360,
         minWidth: 340,
-        backgroundColor: "#1A1B1E",
         color: "white",
       }}
     >
