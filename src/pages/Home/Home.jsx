@@ -19,6 +19,7 @@ import AboutSection from "./About";
 import { useTokenValidation } from "../../hooks/getTokenValidation";
 import { useNavigate } from "react-router";
 import CustomLoader from "../../components/Loader";
+import { color } from "chart.js/helpers";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -131,7 +132,12 @@ export default function Home() {
       </Container>
       {/* Why Choose Us Section */}
       <AboutSection />
-      <Divider my="xl" label="Why Choose Us?" labelPosition="center" />
+      <Divider
+        my="xl"
+        label="Why Choose Us?"
+        labelPosition="center"
+        labelProps={{ color: "white" }}
+      />
       <Text align="center" size="md" mt="lg" color="dimmed">
         MemeGuard is dedicated to ensuring the safety and transparency of your
         investments on TON. With real-time data, an intuitive interface, and

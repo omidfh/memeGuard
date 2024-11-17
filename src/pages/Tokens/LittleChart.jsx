@@ -44,10 +44,10 @@ const TokenHoldersChart = ({ data }) => {
         data: data.holders.map((holder) => holder.percentage),
         backgroundColor: backgroundColors,
         hoverBackgroundColor: hoverBackgroundColors,
-        borderWidth: 2,
-        borderColor: "#fff",
+        borderWidth: 0,
+        borderColor: "#0000002",
         borderRadius: 10, // Rounded edges
-        hoverBorderColor: "#fff",
+        hoverBorderColor: "#ffffff4",
       },
     ],
   };
@@ -61,23 +61,23 @@ const TokenHoldersChart = ({ data }) => {
       legend: {
         position: "right",
         labels: {
-          color: "#f0f0f0", // Light text for legend labels
+          color: "#ffffff", // Light text for legend labels
           usePointStyle: true,
           pointStyle: "circle",
         },
       },
       tooltip: {
-        backgroundColor: "rgba(255, 255, 255, 0.9)",
+        backgroundColor: "rgba(255, 255, 255, 0.615)",
         bodyColor: "#000",
         titleColor: "#000",
-        borderColor: "#ddd",
-        borderWidth: 1,
+        borderColor: "#060606",
+        borderWidth: 0,
       },
     },
   };
 
   return (
-    <Flex bg={"white"} justify={"center"} align={"center"} mah={300} w={"100%"}>
+    <Flex justify={"center"} align={"center"} mah={300} w={"100%"}>
       <Box maw={200}>
         {/* <Title>Top Holders</Title> */}
         <Doughnut data={chartData} options={options} />
