@@ -39,7 +39,6 @@ body {
   min-height: 100%; /* Ensure content always fills at least the screen height */
   width: 100%;
   z-index: 10; /* Ensure content is above the background */
-  color: white;
   text-align: center;
   padding-top: 5rem;
   padding-bottom: 5rem;
