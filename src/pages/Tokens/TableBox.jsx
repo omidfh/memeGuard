@@ -4,20 +4,20 @@ import { Tabs, Table, Box, Text, Flex, Container } from "@mantine/core";
 import LittleChart from "./LittleChart";
 import { useMediaQuery } from "@mantine/hooks";
 
-export default function TableBox({ holders, topTrades, topBuys }) {
+export default function TableBox({ holders, topTrades, topBuys, decimal }) {
   const [activeTab, setActiveTab] = useState("Holders");
   const mainTabs = ["Holders", "Top Trades", "Top Buy", "Map"];
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
   // Calculate total balance
   const totalBalance = holders.reduce((sum, holder) => sum + holder.balance, 0);
-  console.log(topBuys);
+  console.log(holders);
   // Process holders data
   const holdersData = {
     headers: ["Wallet", "Percentage", "Amount"],
     rows: holders.map((holder) => ({
       address: holder.address,
       percentage: ((holder.balance / totalBalance) * 100).toFixed(2),
-      amount: holder.balance,
+      amount: formatAmount(Number(holder.balance), decimal),
     })),
   };
 
@@ -34,7 +34,7 @@ export default function TableBox({ holders, topTrades, topBuys }) {
     headers: ["Wallet", "Amount Bought", "Time"],
     rows: topBuys.map((buy) => ({
       wallet: buy.walletAddress,
-      amount: buy.amount,
+      amount: formatAmount(Number(buy.amount), decimal),
       time: new Date(buy.ts)
         .toLocaleString("en-CA", {
           year: "numeric",
@@ -47,6 +47,15 @@ export default function TableBox({ holders, topTrades, topBuys }) {
         .replace(",", " -"), // Replace comma with a dash for the desired format
     })),
   };
+
+  function formatAmount(amount, decimal) {
+    const divisor = Math.pow(10, decimal); // Calculate 10^decimal
+    const formattedAmount = (amount / divisor).toLocaleString(undefined, {
+      minimumFractionDigits: 2, // Always show at least 2 decimal places
+      maximumFractionDigits: 2, // Show at most 2 decimal places
+    });
+    return formattedAmount;
+  }
 
   return (
     <Box
@@ -116,7 +125,7 @@ export default function TableBox({ holders, topTrades, topBuys }) {
                       6
                     )}...${row.address.slice(-4)}`}</td>
                     <td align="left">{`${row.percentage}%`}</td>
-                    <td align="left">{row.amount.toLocaleString()}</td>
+                    <td align="left">{row.amount}</td>
                   </tr>
                 ))}
               </tbody>

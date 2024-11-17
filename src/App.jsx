@@ -10,7 +10,6 @@ import Home from "./pages/Home/Home";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      //in set mikone har chand saniye yebar , data refetch beshe
       staleTime: 60 * 1000,
     },
   },

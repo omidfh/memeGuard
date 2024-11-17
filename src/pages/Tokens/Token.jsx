@@ -38,6 +38,7 @@ export default function Token() {
     error: error5,
   } = useTokenTopBuys(id);
 
+  console.log(tokenInfo);
   if (isFetching || isFetching2 || isFetching3 || isFetching4 || isFetching5)
     return <CustomLoader />;
   return (
@@ -61,7 +62,12 @@ export default function Token() {
         <Socials data={tokenInfo} />
       </SimpleGrid>
       <Flex maw={"100%"} justify={"center"} p={"lg"}>
-        <TableBox holders={holders} topTrades={topTrades} topBuys={topBuys} />
+        <TableBox
+          holders={holders}
+          topTrades={topTrades}
+          topBuys={topBuys}
+          decimal={tokenInfo.decimals}
+        />
       </Flex>
     </Flex>
   );
