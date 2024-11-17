@@ -1,7 +1,6 @@
-// LittleChart.jsx
-import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Box, Flex, Text, Title } from "@mantine/core";
 
 // Register the components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -60,38 +59,32 @@ const TokenHoldersChart = ({ data }) => {
     cutout: "70%", // Makes the doughnut thinner
     plugins: {
       legend: {
-        position: "bottom",
+        position: "right",
         labels: {
+          color: "#f0f0f0", // Light text for legend labels
           usePointStyle: true,
           pointStyle: "circle",
         },
       },
       tooltip: {
-        backgroundColor: "rgba(0,0,0,0.7)",
-        bodyColor: "#fff",
-        titleColor: "#fff",
-        borderColor: "#fff",
+        backgroundColor: "rgba(255, 255, 255, 0.9)",
+        bodyColor: "#000",
+        titleColor: "#000",
+        borderColor: "#ddd",
         borderWidth: 1,
       },
     },
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "400px",
-        margin: "0 auto",
-        textAlign: "center",
-      }}
-    >
-      <h4>Top Holders</h4>
-      <div style={{ position: "relative", height: "300px" }}>
+    <Flex bg={"white"} justify={"center"} align={"center"} mah={300} w={"100%"}>
+      <Box maw={200}>
+        {/* <Title>Top Holders</Title> */}
         <Doughnut data={chartData} options={options} />
-      </div>
-      <ul style={{ listStyleType: "none", padding: 0 }}>
+      </Box>
+      {/* <Flex direction={"column"} bg={"white"}>
         {data.holders.map((holder, index) => (
-          <li
+          <Text
             key={index}
             style={{
               color: backgroundColors[index],
@@ -100,12 +93,12 @@ const TokenHoldersChart = ({ data }) => {
             }}
           >
             <strong>{holder.name}</strong>: {holder.percentage}%
-          </li>
+          </Text>
         ))}
-      </ul>
-      <p style={{ fontSize: "16px", fontWeight: "bold" }}>
+      </Flex> */}
+      {/* <p style={{ fontSize: "16px", fontWeight: "bold" }}>
         Total Holders: {data.totalHolders}
-      </p>
-    </div>
+      </p> */}
+    </Flex>
   );
 };

@@ -30,7 +30,7 @@ export default function Score({ holders }) {
 
   console.log(holders);
   return (
-    <Card shadow="sm" radius="md" padding="lg" style={{ maxWidth: 360 }}>
+    <Card shadow="sm" radius="md" padding="lg" maw={360}>
       {/* Title */}
       <Text weight={600} size="sm" mb="xs">
         Rug Check
@@ -38,7 +38,7 @@ export default function Score({ holders }) {
 
       {/* Gauge Chart */}
       <Center>
-        <div style={{ width: 300 }}>
+        <div style={{ maxWidth: 300 }}>
           <GaugeChart
             id="credit-score-gauge"
             nrOfLevels={ranges.length}

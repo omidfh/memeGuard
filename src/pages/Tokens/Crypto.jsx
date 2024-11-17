@@ -64,7 +64,12 @@ export default function Crypto({ data, price }) {
 
   return (
     <>
-      <Card shadow="sm" padding="lg" radius="md" style={{ maxWidth: 360 }}>
+      <Card
+        shadow="sm"
+        padding="lg"
+        radius="md"
+        style={{ maxWidth: 360, minWidth: 340 }}
+      >
         {/* Default Currency */}
         <Flex mb="sm" align={"center"} justify={"space-between"}>
           <Flex align={"center"} gap={6}>

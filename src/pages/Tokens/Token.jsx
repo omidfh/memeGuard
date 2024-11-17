@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@mantine/core";
+import { Container, Flex, SimpleGrid } from "@mantine/core";
 import React from "react";
 import Crypto from "./Crypto";
 import Score from "./Score";
@@ -9,10 +9,14 @@ import { useTokenInfo } from "../../hooks/getTokenInfo";
 import CustomLoader from "../../components/Loader";
 import { useTokenPrice } from "../../hooks/getTokenPrice";
 import { useTokenHolders } from "../../hooks/getTokenHolders";
+import { useMediaQuery } from "@mantine/hooks";
+import { useTokenTopTrades } from "../../hooks/getTopTraders";
+import { useTokenTopBuys } from "../../hooks/getTopBuys";
 
 export default function Token() {
   const { id } = useParams();
   const { data: tokenInfo, isFetching, error } = useTokenInfo(id);
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
   const {
     data: price,
     isFetching: isFetching2,
@@ -23,11 +27,28 @@ export default function Token() {
     isFetching: isFetching3,
     error: error3,
   } = useTokenHolders(id);
+  const {
+    data: topTrades,
+    isFetching: isFetching4,
+    error: error4,
+  } = useTokenTopTrades(id);
+  const {
+    data: topBuys,
+    isFetching: isFetching5,
+    error: error5,
+  } = useTokenTopBuys(id);
 
-  if (isFetching || isFetching2 || isFetching3) return <CustomLoader />;
+  if (isFetching || isFetching2 || isFetching3 || isFetching4 || isFetching5)
+    return <CustomLoader />;
   return (
-    <>
+    <Flex
+      justify={"center"}
+      direction={"column"}
+      p={"xl"}
+      sx={{ overflowX: "hidden" }}
+    >
       <SimpleGrid
+        sx={{ "justify-items": "center" }}
         cols={3}
         spacing="xl"
         verticalSpacing={"xl"}
@@ -38,7 +59,9 @@ export default function Token() {
         <Score holders={holders} />
         <Socials data={tokenInfo} />
       </SimpleGrid>
-      <TableBox holders={holders} />
-    </>
+      <Flex maw={"100%"} justify={"center"} p={"lg"}>
+        <TableBox holders={holders} topTrades={topTrades} topBuys={topBuys} />
+      </Flex>
+    </Flex>
   );
 }

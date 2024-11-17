@@ -96,7 +96,8 @@ export default function Socials({ data }) {
       shadow="sm"
       radius="md"
       style={{
-        width: 300,
+        maxWidth: 360,
+        minWidth: 340,
         backgroundColor: "#1A1B1E",
         color: "white",
       }}
