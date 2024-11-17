@@ -1,4 +1,4 @@
-import { Card, Flex, Text, Divider, ActionIcon } from "@mantine/core";
+import { Card, Flex, Text, Divider, ActionIcon, Center } from "@mantine/core";
 import {
   IconBrandFacebook,
   IconBrandReddit,
@@ -24,25 +24,37 @@ export default function Socials({ data }) {
       platform: "X",
       label: "X",
       link: data.socials?.twitter[0] || "",
+      isActive: !!data.socials?.twitter,
+      color: "black",
     },
     {
       icon: <IconBrandInstagram size={20} />,
       platform: "Instagram",
       label: "Instagram",
       link: data.socials?.instagram[0] || "",
+      isActive: !!data.socials?.instagram,
+      color: "red.7",
     },
     {
       icon: <IconBrandReddit size={20} />,
-      platform: "Subscribers",
+      platform: "Reddit",
       label: "Reddit",
+      isActive: !!data.socials?.reddit,
+      color: "orange",
     },
     {
       icon: <IconBrandTelegram size={20} />,
       platform: "Telegram",
       label: "Telegram",
       link: data.socials?.telegram[0] || "",
+      isActive: !!data.socials?.telegram,
+      color: "blue.7",
     },
   ];
+  ////custom links
+  const customLinks = [{}];
+
+  console.log(socialLinks);
 
   const additionalIcons = [
     {
@@ -96,6 +108,7 @@ export default function Socials({ data }) {
       // withBorder
       shadow="sm"
       radius="md"
+      p={"lg"}
       style={{
         maxWidth: 360,
         minWidth: 340,
@@ -103,58 +116,62 @@ export default function Socials({ data }) {
       }}
     >
       <Text weight={500} size="lg" style={{ marginBottom: "1rem" }}>
-        Social Links:
+        Social Links
       </Text>
+      <Flex direction={"column"} justify={"center"} h={"80%"}>
+        <Flex
+          gap="sm"
+          wrap="wrap"
+          align="center"
+          style={{ justifyContent: "space-between" }}
+        >
+          {socialLinks.map((link, index) => (
+            <Flex
+              key={index}
+              direction="column"
+              align="center"
+              style={{ width: "48px" }}
+            >
+              <ActionIcon
+                size="lg"
+                color={link.isActive ? link.color : "gray"}
+                bg={link.isActive ? "white" : "gray.5"}
+                variant="light"
+                radius="xl"
+                component="a" // Render as <a> element
+                href={link.isActive ? normalizeUrl(link.link) : null} // Set the link URL
+                target="_blank" // Open in a new tab
+                rel="noopener noreferrer"
+                //   style={{ color: "white" }}
+              >
+                {link.icon}
+              </ActionIcon>
+              <Text
+                size="xs"
+                style={{ textAlign: "center", marginTop: "0.5rem" }}
+              >
+                {link.platform}
+              </Text>
+            </Flex>
+          ))}
+        </Flex>
 
-      <Flex
-        gap="sm"
-        wrap="wrap"
-        align="center"
-        style={{ justifyContent: "space-between" }}
-      >
-        {socialLinks.map((link, index) => (
-          <Flex
-            key={index}
-            direction="column"
-            align="center"
-            style={{ width: "48px" }}
-          >
+        <Divider my="md" color="gray" />
+
+        {/* PAIIN */}
+        <Flex justify="space-around">
+          {additionalIcons.map((icon, index) => (
             <ActionIcon
-              size="lg"
-              variant="light"
+              key={index}
+              size="xl"
               radius="xl"
-              component="a" // Render as <a> element
-              href={normalizeUrl(link.link)} // Set the link URL
-              target="_blank" // Open in a new tab
-              rel="noopener noreferrer"
-              //   style={{ color: "white" }}
+              variant="light"
+              // style={{ color: "white" }}
             >
-              {link.icon}
+              {icon.icon}
             </ActionIcon>
-            <Text
-              size="xs"
-              style={{ textAlign: "center", marginTop: "0.5rem" }}
-            >
-              {link.platform}
-            </Text>
-          </Flex>
-        ))}
-      </Flex>
-
-      <Divider my="md" color="gray" />
-
-      <Flex justify="space-around">
-        {additionalIcons.map((icon, index) => (
-          <ActionIcon
-            key={index}
-            size="xl"
-            radius="xl"
-            variant="light"
-            // style={{ color: "white" }}
-          >
-            {icon.icon}
-          </ActionIcon>
-        ))}
+          ))}
+        </Flex>
       </Flex>
     </Card>
   );

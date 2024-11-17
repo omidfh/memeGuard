@@ -53,7 +53,7 @@ export default function Home() {
         alert("Invalid token!");
       }
     }
-  }, [data]);
+  }, [data, searchQuery, navigate]);
 
   const handlePaste = async () => {
     try {
@@ -105,6 +105,7 @@ export default function Home() {
                     radius={50}
                     color="blue"
                     right={10}
+                    bg={"white"}
                   >
                     <IconClipboard size={20} />
                   </ActionIcon>
