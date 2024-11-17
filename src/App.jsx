@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import AppLayout from "./components/AppLayout";
 import Token from "./pages/Tokens/Token";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 
 // Create a QueryClient instance
 const queryClient = new QueryClient();
