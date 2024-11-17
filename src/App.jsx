@@ -3,8 +3,8 @@ import { MantineProvider } from "@mantine/core";
 import { useEffect } from "react";
 import AppLayout from "./components/AppLayout";
 import Token from "./pages/Tokens/Token";
-import Home from "./pages/index/Index";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Home from "./pages/Home";
 
 // Create a QueryClient instance
 const queryClient = new QueryClient();
