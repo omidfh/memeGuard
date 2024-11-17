@@ -20,7 +20,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
-  background: transparent;
+  background-color: transparent;
 }
 
 .background {
