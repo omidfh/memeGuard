@@ -19,7 +19,7 @@ import { useTokenValidation } from "../../hooks/getTokenValidation";
 import { useNavigate } from "react-router";
 import CustomLoader from "../../components/Loader";
 
-function Home() {
+export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [enabled, setEnabled] = useState(false);
@@ -132,5 +132,3 @@ function Home() {
     </Container>
   );
 }
-
-export default Home;

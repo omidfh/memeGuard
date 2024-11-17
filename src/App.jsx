@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MantineProvider } from "@mantine/core";
 import { useEffect } from "react";
-import Home from "./pages/index/Index";
 import AppLayout from "./components/AppLayout";
 import Token from "./pages/Tokens/Token";
+import Home from "./pages/index/Index";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Create a QueryClient instance
