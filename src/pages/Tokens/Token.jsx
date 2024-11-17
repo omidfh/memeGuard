@@ -46,6 +46,7 @@ export default function Token() {
       direction={"column"}
       p={"xl"}
       sx={{ overflowX: "hidden" }}
+      w={"100%"}
     >
       <SimpleGrid
         sx={{ "justify-items": "center" }}

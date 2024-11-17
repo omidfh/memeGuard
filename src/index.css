@@ -23,6 +23,14 @@ body {
   background-color: transparent;
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%; /* Ensure no horizontal scroll due to content width */
+  overflow-x: hidden; /* Disable horizontal scrolling */
+}
+
 .background {
   position: fixed; /* Keep the background fixed even while scrolling */
   top: 0;
@@ -35,6 +43,7 @@ body {
   background-position: center; /* Ensures proper centering */
   background-attachment: fixed; /* Keeps background fixed during scroll */
   z-index: -1; /* Keep background behind content */
+  overflow-x: hidden;
 }
 
 .content {
