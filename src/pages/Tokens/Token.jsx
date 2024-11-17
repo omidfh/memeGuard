@@ -46,7 +46,8 @@ export default function Token() {
       justify={"center"}
       direction={"column"}
       px={"xl"}
-      py={"xs"}
+      pt={"xs"}
+      pb={1}
       sx={{ overflowX: "hidden" }}
       w={"100%"}
     >
@@ -62,7 +63,7 @@ export default function Token() {
         <Score holders={holders} />
         <Socials data={tokenInfo} />
       </SimpleGrid>
-      <Flex maw={"100%"} justify={"center"} p={"lg"}>
+      <Flex maw={"100%"} justify={"center"} pb={0} pt={"md"} px={"lg"}>
         <TableBox
           holders={holders}
           topTrades={topTrades}
