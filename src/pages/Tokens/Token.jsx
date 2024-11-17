@@ -38,7 +38,7 @@ export default function Token() {
         <Score holders={holders} />
         <Socials data={tokenInfo} />
       </SimpleGrid>
-      <TableBox />
+      <TableBox holders={holders} />
     </>
   );
 }

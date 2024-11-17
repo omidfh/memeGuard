@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import { Tabs, Table, Box, Text, Container } from "@mantine/core";
 import LittleChart from "./LittleChart";
 
-export default function TableBox() {
+export default function TableBox({ holders }) {
   const [activeTab, setActiveTab] = useState("holders");
-
+  console.log(holders);
   // Dummy data for each tab
   const holdersData = {
-    headers: ["Holder Address", "Balance", "Percentage"],
-    rows: [
-      ["0xABC...123", "1000", "10%"],
-      ["0xDEF...456", "800", "8%"],
-      ["0xGHI...789", "600", "6%"],
-    ],
+    headers: ["Wallet", "Percentage", "Amount"],
+    rows: holders.map((holder) => ({
+      address: holder.address,
+      percentage: "3",
+      amount: holder.balance,
+    })),
   };
 
   const topTradesData = {
@@ -72,9 +72,9 @@ export default function TableBox() {
             <tbody>
               {holdersData.rows.map((row, index) => (
                 <tr key={index}>
-                  {row.map((cell, idx) => (
-                    <td key={idx}>{cell}</td>
-                  ))}
+                  <td>{row.address}</td>
+                  <td>{row.percentage}</td>
+                  <td>{row.amount}</td>
                 </tr>
               ))}
             </tbody>

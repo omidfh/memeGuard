@@ -1,3 +1,3 @@
-export const tonApi = import.meta.env.VITE_TON_API;
-export const dedustApi = import.meta.env.VITE_DEDUST_API;
-export const holderLimit = Number(import.meta.env.VITE_HOLDER_LIMIT);
+export const tonApi = "https://tonapi.io/v2";
+export const dedustApi = "https://api.dedust.io/v2";
+export const holderLimit = 50;
