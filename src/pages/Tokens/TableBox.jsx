@@ -25,7 +25,7 @@ export default function TableBox({ holders, topTrades, topBuys, decimal }) {
     headers: ["Wallet", "Volume", "Swaps"],
     rows: topTrades.map((trade) => ({
       wallet: trade.walletAddress,
-      volume: trade.volume,
+      volume: formatAmount(Number(trade.volume), decimal),
       swaps: trade.swaps,
     })),
   };
