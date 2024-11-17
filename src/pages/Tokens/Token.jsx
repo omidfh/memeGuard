@@ -45,7 +45,8 @@ export default function Token() {
     <Flex
       justify={"center"}
       direction={"column"}
-      p={"xl"}
+      px={"xl"}
+      py={"xs"}
       sx={{ overflowX: "hidden" }}
       w={"100%"}
     >
