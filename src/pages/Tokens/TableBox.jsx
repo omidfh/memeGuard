@@ -6,17 +6,17 @@ import { useMediaQuery } from "@mantine/hooks";
 
 export default function TableBox({ holders, topTrades, topBuys, decimal }) {
   const [activeTab, setActiveTab] = useState("Holders");
-  const mainTabs = ["Holders", "Top Trades", "Top Buy", "Map"];
+  const mainTabs = ["Holders", "Top Trades", "Top Buy", "BubbleMap"];
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
   // Calculate total balance
   const totalBalance = holders.reduce((sum, holder) => sum + holder.balance, 0);
   console.log(holders);
   // Process holders data
   const holdersData = {
-    headers: ["Wallet", "Percentage", "Amount"],
+    headers: ["Wallet", "Ownership", "Amount"],
     rows: holders.map((holder) => ({
       address: holder.address,
-      percentage: ((holder.balance / totalBalance) * 100).toFixed(2),
+      ownership: ((holder.balance / totalBalance) * 100).toFixed(2),
       amount: formatAmount(Number(holder.balance), decimal),
     })),
   };
@@ -124,7 +124,7 @@ export default function TableBox({ holders, topTrades, topBuys, decimal }) {
                       0,
                       6
                     )}...${row.address.slice(-4)}`}</td>
-                    <td align="left">{`${row.percentage}%`}</td>
+                    <td align="left">{`${row.ownership}%`}</td>
                     <td align="left">{row.amount}</td>
                   </tr>
                 ))}

@@ -19,13 +19,13 @@ export default function Crypto({ data, price }) {
   const { id } = useParams();
   const [notification, setNotification] = useState(null);
   function setColor(status) {
-    if (status === "enabled") {
+    if (status === "disabled") {
       return {
         bg: "green.1",
         icon: "green",
         text: "green.9",
       };
-    } else if (status === "disabled") {
+    } else if (status === "enabled") {
       return {
         bg: "red.1",
         icon: "red",
@@ -86,76 +86,82 @@ export default function Crypto({ data, price }) {
         </Flex>
         <Divider my={10} />
         {/* Details */}
-        <Flex direction={"column"} gap={5}>
-          <Flex direction={"column"} align={"start"} gap={4}>
-            {/* Symbol */}
-            <Flex align={"center"} justify={"space-between"} w={"100%"}>
-              <Text color="white" size={12} align="centers">
-                Symbol
+        <Flex direction={"column"} gap={5} justify={"space-evenly"}>
+          {/* <Flex direction={"column"} align={"start"} gap={4}> */}
+          {/* Symbol */}
+          <Flex align={"center"} justify={"space-between"} w={"100%"}>
+            <Text color="white" size={12} align="centers">
+              Symbol
+            </Text>
+            <Text
+              color="white"
+              size={12}
+              maw={100}
+              lineClamp={2}
+              truncate="end"
+              i
+            >
+              {data.symbol}
+            </Text>
+          </Flex>
+          {/* ADRESS */}
+          <Flex align={"center"} justify={"space-between"} w={"100%"}>
+            <Flex align={"center"} gap={4}>
+              <Text color="white" size={12}>
+                Address
               </Text>
+              <ActionIcon
+                onClick={handleCopy}
+                color="white"
+                p={0}
+                pos={"absolute"}
+                left={80}
+              >
+                <IconCopy size={12} color="white" />
+              </ActionIcon>
+            </Flex>
+            <Box>
               <Text
                 color="white"
                 size={12}
                 maw={100}
-                lineClamp={2}
-                truncate="end"
-                i
+                lineClamp={1}
+                truncate={true}
               >
-                {data.symbol}
+                {id.slice(0, 5) + "..." + id.slice(id.length - 5, -1)}
               </Text>
-            </Flex>
-            {/* ADRESS */}
-            <Flex align={"center"} justify={"space-between"} w={"100%"}>
-              <Flex align={"center"} gap={4}>
-                <Text color="white" size={12}>
-                  Address
-                </Text>
-                <ActionIcon onClick={handleCopy} color="white">
-                  <IconCopy size={12} color="white" />
-                </ActionIcon>
-              </Flex>
-              <Box>
-                <Text
-                  color="white"
-                  size={12}
-                  maw={100}
-                  lineClamp={1}
-                  truncate={true}
-                >
-                  {id.slice(0, 5) + "..." + id.slice(id.length - 5, -1)}
-                </Text>
-              </Box>
-            </Flex>
-            {/* SUPPLY */}
-            <Flex align={"center"} justify={"space-between"} w={"100%"}>
-              <Text color="white" size={12}>
-                Supply
-              </Text>
-              <Text color="white" size={12}>
-                {data.totalSupply.toLocaleString()}
-              </Text>
-            </Flex>
-            {/* MC */}
-            <Flex align={"center"} justify={"space-between"} w={"100%"}>
-              <Text color="white" size={12}>
-                MC
-              </Text>
-              <Text color="white" size={12}>
-                {(data.totalSupply * price.price).toLocaleString()}
-              </Text>
-            </Flex>
-            {/* OWNER */}
-            <Flex align={"center"} justify={"space-between"} w={"100%"}>
-              <Text color="white" size={12}>
-                Owner
-              </Text>
-              <Text size={12} align="center" color="white">
-                {data.owner && data.owner.length > 10
-                  ? data.owner.slice(0, 10) + "..."
-                  : data.owner || "----"}
-              </Text>
-            </Flex>
+            </Box>
           </Flex>
+          {/* SUPPLY */}
+          <Flex align={"center"} justify={"space-between"} w={"100%"}>
+            <Text color="white" size={12}>
+              Supply
+            </Text>
+            <Text color="white" size={12}>
+              {data.totalSupply.toLocaleString()}
+            </Text>
+          </Flex>
+          {/* MC */}
+          <Flex align={"center"} justify={"space-between"} w={"100%"}>
+            <Text color="white" size={12}>
+              Market Cap
+            </Text>
+            <Text color="white" size={12}>
+              {(data.totalSupply * price.price).toLocaleString()}
+            </Text>
+          </Flex>
+          {/* OWNER */}
+          <Flex align={"center"} justify={"space-between"} w={"100%"}>
+            <Text color="white" size={12}>
+              Owner
+            </Text>
+            <Text size={12} align="center" color="white">
+              {data.owner && data.owner.length > 10
+                ? data.owner.slice(0, 10) + "..."
+                : data.owner || "----"}
+            </Text>
+          </Flex>
+          {/* </Flex> */}
         </Flex>
 
         <Divider my={10} />
@@ -213,7 +219,8 @@ export default function Crypto({ data, price }) {
               </Text>
 
               <Text size={10} color={setColor(data.mutable).text}>
-                Enabled
+                {/* Enabled */}
+                {data?.mutable?.toUpperCase()}
               </Text>
             </Flex>
           </Card>

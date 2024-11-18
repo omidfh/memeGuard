@@ -41,16 +41,16 @@ export default function HotTokenCard({ address }) {
       <Flex direction="column" align="center">
         {/* Token Logo and Name */}
         <Avatar
-          src={token.logo}
+          src={token?.logo || ""}
           size={isSmallScreen ? 45 : "xl"}
           mb="sm"
           radius={100}
         />
         <Text color="white" weight={700} size={isSmallScreen ? "sm" : "lg"}>
-          {token.name}
+          {token?.name || ""}
         </Text>
         <Text color="dimmed" size="sm" mt="xs">
-          {token.symbol}
+          {token?.symbol || ""}
         </Text>
         <Text
           color="dimmed"

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { tonApi } from "../apiConfig";
+import { Address } from "@ton/core";
 
 export function useTokenInfo(address) {
   return useQuery({
@@ -24,9 +25,29 @@ async function fetchTokenInfo(contractAddress) {
   const burnerAddress =
     "0:0000000000000000000000000000000000000000000000000000000000000000";
   const owner =
-    admin?.address !== burnerAddress && admin?.address !== "none"
-      ? admin?.address
-      : "revoked";
+    admin?.address === burnerAddress || !admin?.address
+      ? "revoked"
+      : admin?.address;
+
+  console.log(admin);
+
+  // let owner;
+  // if (!admin?.address || admin?.address === burnerAddress) {
+  //   owner = "revoked";
+  // } else if (admin?.address) {
+  //   console.log(Address.parse("0:85434d063cb8ab8aba909d16651fb4788af9df84641a1698548bc14f442da7b9"));
+  //   owner = Address.parse(admin.address);
+  // }
+
+  // const owner =
+  //   admin?.address === undefined ||
+  //   admin?.address === null ||
+  //   admin?.address === "none" ||
+  //   admin?.address === burnerAddress
+  //     ? "revoked"
+  //     : admin?.address;
+
+  // const ownerFriendy = Address.parse(owner);
 
   // socials
   let links;
@@ -93,3 +114,13 @@ async function fetchTokenInfo(contractAddress) {
     isScam: admin?.is_scam,
   };
 }
+
+// const owner =
+//   admin?.address === undefined ||
+//   admin?.address === null ||
+//   admin?.address === "none" ||
+//   admin?.address === burnerAddress
+//     ? "revoked"
+//     : admin?.address;
+
+// const ownerFriendy = Address.parse(owner);

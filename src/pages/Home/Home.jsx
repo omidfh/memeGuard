@@ -19,7 +19,6 @@ import AboutSection from "./About";
 import { useTokenValidation } from "../../hooks/getTokenValidation";
 import { useNavigate } from "react-router";
 import CustomLoader from "../../components/Loader";
-import { color } from "chart.js/helpers";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
