@@ -27,9 +27,7 @@ async function fetchTokenInfo(contractAddress) {
   const owner =
     admin?.address === burnerAddress || !admin?.address
       ? "revoked"
-      : admin?.address;
-
-  console.log(admin);
+      : Address.normalize(admin?.address);
 
   // let owner;
   // if (!admin?.address || admin?.address === burnerAddress) {

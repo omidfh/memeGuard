@@ -59,7 +59,7 @@ export default function HotTokenCard({ address }) {
           maw={isSmallScreen ? "80px" : "180px"}
           lineClamp={1}
         >
-          {token.owner ? token.owner : "---"}
+          {token?.owner ? token.owner : "---"}
         </Text>
         <Text color="white" size={{ base: "sm", sm: 10 }} mt="xs" lineClamp={1}>
           {price ? price.price : ""}(USD)

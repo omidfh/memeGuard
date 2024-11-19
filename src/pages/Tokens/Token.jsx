@@ -65,6 +65,7 @@ export default function Token() {
       </SimpleGrid>
       <Flex maw={"100%"} justify={"center"} pb={0} pt={"md"} px={"lg"}>
         <TableBox
+          tokenInfo={tokenInfo}
           holders={holders}
           topTrades={topTrades}
           topBuys={topBuys}

@@ -157,8 +157,9 @@ export default function Crypto({ data, price }) {
             </Text>
             <Text size={12} align="center" color="white">
               {data.owner && data.owner.length > 10
-                ? data.owner.slice(0, 10) + "..."
+                ? data.owner.slice(0, 5) + "..." + id.slice(id.length - 5, -1)
                 : data.owner || "----"}
+              {/* {id.slice(0, 5) + "..." + id.slice(id.length - 5, -1)} */}
             </Text>
           </Flex>
           {/* </Flex> */}

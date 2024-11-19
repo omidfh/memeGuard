@@ -3,20 +3,30 @@ import React, { useState } from "react";
 import { Tabs, Table, Box, Text, Flex, Container } from "@mantine/core";
 import LittleChart from "./LittleChart";
 import { useMediaQuery } from "@mantine/hooks";
+import { Address } from "@ton/core";
 
-export default function TableBox({ holders, topTrades, topBuys, decimal }) {
+export default function TableBox({
+  holders,
+  topTrades,
+  topBuys,
+  decimal,
+  tokenInfo,
+}) {
   const [activeTab, setActiveTab] = useState("Holders");
-  const mainTabs = ["Holders", "Top Trades", "Top Buy", "BubbleMap"];
+  const mainTabs = ["Holders", "Top Trades", "Top Buy", "Bubble Map"];
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
   // Calculate total balance
-  const totalBalance = holders.reduce((sum, holder) => sum + holder.balance, 0);
   console.log(holders);
   // Process holders data
   const holdersData = {
     headers: ["Wallet", "Ownership", "Amount"],
     rows: holders.map((holder) => ({
       address: holder.address,
-      ownership: ((holder.balance / totalBalance) * 100).toFixed(2),
+      ownership: (
+        (holder.balance / Math.pow(10, decimal) / tokenInfo.totalSupply) *
+        100
+      ).toFixed(2),
+      // ownership: ((holder.balance / totalBalance) * 100).toFixed(2),
       amount: formatAmount(Number(holder.balance), decimal),
     })),
   };
@@ -120,11 +130,11 @@ export default function TableBox({ holders, topTrades, topBuys, decimal }) {
               <tbody>
                 {holdersData.rows.map((row, index) => (
                   <tr key={index}>
-                    <td align="left">{`${row.address.slice(
+                    <td align="left">{`${Address.normalize(row.address).slice(
                       0,
                       6
-                    )}...${row.address.slice(-4)}`}</td>
-                    <td align="left">{`${row.ownership}%`}</td>
+                    )}...${Address.normalize(row.address).slice(-4)}`}</td>
+                    <td align="left">{row.ownership}%</td>
                     <td align="left">{row.amount}</td>
                   </tr>
                 ))}
@@ -236,7 +246,7 @@ export default function TableBox({ holders, topTrades, topBuys, decimal }) {
         </Tabs.Panel>
 
         {/* Map Tab */}
-        <Tabs.Panel value="Map" pt="md">
+        <Tabs.Panel value="Bubble Map" pt="md">
           <Flex miw={"430px"} mih={50} justify={"center"}>
             <Text align="center" size="lg" color="#f0f0f0">
               Coming Soon

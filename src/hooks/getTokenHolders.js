@@ -17,7 +17,7 @@ async function fetchTokenHolders(contractAddress) {
   const data = await response.json();
   // return data.addresses;
   const friendlyData = data.addresses.map((holder) => {
-    const addressFriendly = Address.parse(holder?.owner?.address);
+    const addressFriendly = Address.normalize(holder?.owner?.address);
     holder.owner.address = addressFriendly;
     return holder;
   });
