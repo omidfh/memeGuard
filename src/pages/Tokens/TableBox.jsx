@@ -1,9 +1,19 @@
 // TableBox.jsx
 import React, { useState } from "react";
-import { Tabs, Table, Box, Text, Flex, Container } from "@mantine/core";
+import {
+  Tabs,
+  Table,
+  Box,
+  Text,
+  Flex,
+  Container,
+  Button,
+  ActionIcon,
+} from "@mantine/core";
 import LittleChart from "./LittleChart";
 import { useMediaQuery } from "@mantine/hooks";
 import { Address } from "@ton/core";
+import { IconCircleArrowDown } from "@tabler/icons-react";
 
 export default function TableBox({
   holders,
@@ -11,6 +21,7 @@ export default function TableBox({
   topBuys,
   decimal,
   tokenInfo,
+  setHolderLimit,
 }) {
   const [activeTab, setActiveTab] = useState("Holders");
   const mainTabs = ["Holders", "Top Trades", "Top Buy", "Bubble Map"];
@@ -140,6 +151,21 @@ export default function TableBox({
                 ))}
               </tbody>
             </Table>
+            <Flex w={"100%"} justify={"center"}>
+              <Button
+                variant="subtle"
+                color="gray"
+                onClick={() => setHolderLimit((limit) => limit + 5)}
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              >
+                <IconCircleArrowDown />
+                Load More ...
+              </Button>
+            </Flex>
           </Box>
         </Tabs.Panel>
 

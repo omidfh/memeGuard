@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import { tonApi, holderLimit } from "../apiConfig";
+import { tonApi } from "../apiConfig";
 import { Address } from "@ton/core";
 
-export function useTokenHolders(address) {
+export function useTokenHolders({ address, holderLimit }) {
+  console.log(address, holderLimit);
   return useQuery({
-    queryKey: ["token-holders", address],
-    queryFn: () => fetchTokenHolders(address),
+    queryKey: ["token-holders", address, holderLimit],
+    queryFn: () => fetchTokenHolders({ contractAddress: address, holderLimit }),
     enabled: !!address,
   });
 }
 
-async function fetchTokenHolders(contractAddress) {
+async function fetchTokenHolders({ contractAddress, holderLimit }) {
   const response = await fetch(
     `${tonApi}/jettons/${contractAddress}/holders?limit=${holderLimit}`
   );

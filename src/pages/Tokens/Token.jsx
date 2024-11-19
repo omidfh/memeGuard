@@ -1,5 +1,5 @@
 import { Container, Flex, SimpleGrid } from "@mantine/core";
-import React from "react";
+import React, { useState } from "react";
 import Crypto from "./Crypto";
 import Score from "./Score";
 import Socials from "./Socials";
@@ -17,6 +17,7 @@ export default function Token() {
   const { id } = useParams();
   const { data: tokenInfo, isFetching, error } = useTokenInfo(id);
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
+  const [holderLimit, setHolderLimit] = useState(10);
   const {
     data: price,
     isFetching: isFetching2,
@@ -26,7 +27,7 @@ export default function Token() {
     data: holders,
     isFetching: isFetching3,
     error: error3,
-  } = useTokenHolders(id);
+  } = useTokenHolders({ address: id, holderLimit });
   const {
     data: topTrades,
     isFetching: isFetching4,
@@ -39,8 +40,7 @@ export default function Token() {
   } = useTokenTopBuys(id);
 
   console.log(tokenInfo);
-  if (isFetching || isFetching2 || isFetching3 || isFetching4 || isFetching5)
-    return <CustomLoader />;
+  if (isFetching || isFetching2) return <CustomLoader />;
   return (
     <Flex
       justify={"center"}
@@ -64,13 +64,18 @@ export default function Token() {
         <Socials data={tokenInfo} />
       </SimpleGrid>
       <Flex maw={"100%"} justify={"center"} pb={0} pt={"md"} px={"lg"}>
-        <TableBox
-          tokenInfo={tokenInfo}
-          holders={holders}
-          topTrades={topTrades}
-          topBuys={topBuys}
-          decimal={tokenInfo.decimals}
-        />
+        {isFetching3 || isFetching4 || isFetching5 ? (
+          <CustomLoader />
+        ) : (
+          <TableBox
+            setHolderLimit={setHolderLimit}
+            tokenInfo={tokenInfo}
+            holders={holders}
+            topTrades={topTrades}
+            topBuys={topBuys}
+            decimal={tokenInfo.decimals}
+          />
+        )}
       </Flex>
     </Flex>
   );
