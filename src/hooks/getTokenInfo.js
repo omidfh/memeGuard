@@ -29,24 +29,6 @@ async function fetchTokenInfo(contractAddress) {
       ? "revoked"
       : Address.normalize(admin?.address);
 
-  // let owner;
-  // if (!admin?.address || admin?.address === burnerAddress) {
-  //   owner = "revoked";
-  // } else if (admin?.address) {
-  //   console.log(Address.parse("0:85434d063cb8ab8aba909d16651fb4788af9df84641a1698548bc14f442da7b9"));
-  //   owner = Address.parse(admin.address);
-  // }
-
-  // const owner =
-  //   admin?.address === undefined ||
-  //   admin?.address === null ||
-  //   admin?.address === "none" ||
-  //   admin?.address === burnerAddress
-  //     ? "revoked"
-  //     : admin?.address;
-
-  // const ownerFriendy = Address.parse(owner);
-
   // socials
   let links;
   let SOCIAL_MEDIA_TYPES;
@@ -112,13 +94,3 @@ async function fetchTokenInfo(contractAddress) {
     isScam: admin?.is_scam,
   };
 }
-
-// const owner =
-//   admin?.address === undefined ||
-//   admin?.address === null ||
-//   admin?.address === "none" ||
-//   admin?.address === burnerAddress
-//     ? "revoked"
-//     : admin?.address;
-
-// const ownerFriendy = Address.parse(owner);

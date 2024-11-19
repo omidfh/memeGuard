@@ -1,15 +1,6 @@
 // TableBox.jsx
-import React, { useState } from "react";
-import {
-  Tabs,
-  Table,
-  Box,
-  Text,
-  Flex,
-  Container,
-  Button,
-  ActionIcon,
-} from "@mantine/core";
+import { useState } from "react";
+import { Tabs, Table, Box, Text, Flex, Button } from "@mantine/core";
 import LittleChart from "./LittleChart";
 import { useMediaQuery } from "@mantine/hooks";
 import { Address } from "@ton/core";
@@ -32,7 +23,7 @@ export default function TableBox({
   const holdersData = {
     headers: ["Wallet", "Ownership", "Amount"],
     rows: holders.map((holder) => ({
-      address: holder.address,
+      address: Address.normalize(holder.address),
       ownership: (
         (holder.balance / Math.pow(10, decimal) / tokenInfo.totalSupply) *
         100
@@ -141,10 +132,10 @@ export default function TableBox({
               <tbody>
                 {holdersData.rows.map((row, index) => (
                   <tr key={index}>
-                    <td align="left">{`${Address.normalize(row.address).slice(
+                    <td align="left">{`${row.address.slice(
                       0,
                       6
-                    )}...${Address.normalize(row.address).slice(-4)}`}</td>
+                    )}...${row.address.slice(-4)}`}</td>
                     <td align="left">{row.ownership}%</td>
                     <td align="left">{row.amount}</td>
                   </tr>
