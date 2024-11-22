@@ -55,13 +55,11 @@ export default function Score({ holders, tokenInfo }) {
     if (tokenInfo.owner === "revoked") aditionalScore += 20;
     // 2.
     if (tokenInfo?.socials) aditionalScore += 20;
-    // 3.
-    // if (tokenInfo.isScam === false) aditionalScore += 20;
 
-    // 4.
+    // 3.
     if (tokenInfo.verification === "whitelist") aditionalScore += 35;
 
-    // 5.
+    // 4.
     if (tokenInfo.holdersCount > 1000) {
       aditionalScore += 20;
     } else if (500 < tokenInfo.holdersCount && tokenInfo.holdersCount >= 1000) {
@@ -70,14 +68,14 @@ export default function Score({ holders, tokenInfo }) {
       aditionalScore += 10;
     }
 
-    // 6.
+    // 5.
     if (top5Holders < 20) {
       aditionalScore += 10;
     } else if (top5Holders > 20 && top5Holders < 30) {
       aditionalScore += 5;
     }
 
-    //7.
+    //6.
     if (top10Holders < 35) {
       aditionalScore += 5;
     } else if (top10Holders > 35 && top10Holders < 50) {
@@ -96,8 +94,6 @@ export default function Score({ holders, tokenInfo }) {
       setScoreStatus({ status: "Moderate Security", color: "#4c7daf" });
     }
   }, [tokenInfo, holders]);
-
-  useEffect(() => {}, []);
 
   console.log(holders);
   console.log(finalScore);
