@@ -82,7 +82,7 @@ export default function LittleChart({ holders, totalSupply, decimal }) {
 
 const TokenHoldersChart = ({ data, topDetails }) => {
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
-  const isMediumScreen = useMediaQuery("(max-width: 991px)");
+  const isLargeScreen = useMediaQuery("(min-width: 991px)");
   // Define modern, smooth colors
   const backgroundColors = [
     "rgba(255, 99, 132, 0.7)", // Pastel Red
@@ -156,7 +156,13 @@ const TokenHoldersChart = ({ data, topDetails }) => {
   };
 
   return (
-    <Flex justify={"space-between"} align={"center"} mah={300} w={"100%"}>
+    <Flex
+      justify={"space-between"}
+      align={"center"}
+      mah={300}
+      w={"100%"}
+      px={isLargeScreen ? "20%" : "auto"}
+    >
       <Flex justify={"start"} direction={"column"}>
         <Text color="white">Top 5 Holders</Text>
         <Box w={isSmallScreen ? "200px" : "300px"}>
