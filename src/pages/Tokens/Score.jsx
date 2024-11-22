@@ -91,7 +91,7 @@ export default function Score({ holders, tokenInfo }) {
     } else if (aditionalScore >= 50 && aditionalScore < 70) {
       setScoreStatus({ status: "Moderate Security", color: "#44ad71" });
     } else {
-      setScoreStatus({ status: "Moderate Security", color: "#4c7daf" });
+      setScoreStatus({ status: "High Security", color: "#4c7daf" });
     }
   }, [tokenInfo, holders]);
 

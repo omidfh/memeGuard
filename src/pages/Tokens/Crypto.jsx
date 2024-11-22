@@ -76,12 +76,12 @@ export default function Crypto({ data, price }) {
           <Flex align={"center"} gap={6}>
             <Avatar src={data?.logo} radius={100} size={"lg"} />
 
-            <Text color="white" size={18} weight={500}>
+            <Text color="white" size={18} weight={500} maw={"50px"}>
               {data.name}
             </Text>
           </Flex>
-          <Text size={12} color="white">
-            {price.price} USD
+          <Text size={12} color="white" weight={600}>
+            {price.price} $
           </Text>
         </Flex>
         <Divider my={10} />
