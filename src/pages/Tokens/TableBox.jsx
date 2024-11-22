@@ -81,7 +81,7 @@ export default function TableBox({
         <Tabs.List>
           {mainTabs.map((tab, i) => (
             <Tabs.Tab value={tab} key={i}>
-              <Text color="#f0f0f0" size={isSmallScreen ? "xs" : "md"}>
+              <Text color="#f0f0f0" size={isSmallScreen ? 9 : "md"}>
                 {tab}
               </Text>
             </Tabs.Tab>
