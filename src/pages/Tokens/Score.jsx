@@ -6,6 +6,7 @@ import { Address } from "@ton/core";
 
 export default function Score({ holders, tokenInfo }) {
   const [finalScore, setFinalScore] = useState(0);
+  const [scoreStatus, setScoreStatus] = useState({ status: "", color: "" });
 
   //OwnerShip Clac
   function ownershipCalc(holderBalance) {
@@ -55,18 +56,18 @@ export default function Score({ holders, tokenInfo }) {
     // 2.
     if (tokenInfo?.socials) aditionalScore += 20;
     // 3.
-    if (tokenInfo.isScam === false) aditionalScore += 20;
+    // if (tokenInfo.isScam === false) aditionalScore += 20;
 
     // 4.
-    if (tokenInfo.verification === "whitelist") aditionalScore += 15;
+    if (tokenInfo.verification === "whitelist") aditionalScore += 35;
 
     // 5.
     if (tokenInfo.holdersCount > 1000) {
-      aditionalScore += 15;
+      aditionalScore += 20;
     } else if (500 < tokenInfo.holdersCount && tokenInfo.holdersCount >= 1000) {
-      aditionalScore += 10;
+      aditionalScore += 15;
     } else if (100 < tokenInfo.holdersCount && tokenInfo.holdersCount >= 500) {
-      aditionalScore += 5;
+      aditionalScore += 10;
     }
 
     // 6.
@@ -84,6 +85,16 @@ export default function Score({ holders, tokenInfo }) {
     }
 
     setFinalScore(aditionalScore);
+
+    if (aditionalScore < 30) {
+      setScoreStatus({ status: "Not Secure", color: "#f44336" });
+    } else if (aditionalScore >= 30 && aditionalScore < 50) {
+      setScoreStatus({ status: "Low Security", color: "#ff9800" });
+    } else if (aditionalScore >= 50 && aditionalScore < 70) {
+      setScoreStatus({ status: "Moderate Security", color: "#44ad71" });
+    } else {
+      setScoreStatus({ status: "Moderate Security", color: "#4c7daf" });
+    }
   }, [tokenInfo, holders]);
 
   useEffect(() => {}, []);
@@ -102,8 +113,8 @@ export default function Score({ holders, tokenInfo }) {
   const ranges = [
     { label: "Poor", max: 30, color: "#f44336" },
     { label: "Fair", max: 60, color: "#ff9800" },
-    { label: "Good", max: 80, color: "#8e44ad" },
-    { label: "Excellent", max: 100, color: "#4caf50" },
+    { label: "Good", max: 80, color: "#44ad71" },
+    { label: "Excellent", max: 100, color: "#4c7daf" },
   ];
 
   // Calculate arcsLength based on ranges
@@ -116,6 +127,17 @@ export default function Score({ holders, tokenInfo }) {
   // Extract colors
   const colors = ranges.map((range) => range.color);
 
+  const currentDateTime = new Date().toLocaleString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZone: "UTC",
+    timeZoneName: "short",
+  });
   return (
     <Card
       shadow="sm"
@@ -148,11 +170,11 @@ export default function Score({ holders, tokenInfo }) {
 
       {/* Credit Score Details */}
       <Stack align="center" spacing="xs" mt="sm">
-        <Text size="sm" weight={600} color="white">
-          Not Secure
+        <Text size="md" weight={600} color={scoreStatus.color}>
+          {scoreStatus.status}
         </Text>
         <Text size="xs" color="gray.2">
-          Last Check on 21 Apr
+          {currentDateTime}
         </Text>
       </Stack>
     </Card>
