@@ -1,10 +1,11 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Box, Flex, Text, Title } from "@mantine/core";
+import { Box, Card, Flex, Text, Title } from "@mantine/core";
 import { useTokenHolders } from "../../hooks/getTokenHolders";
 import { useParams } from "react-router";
 import CustomLoader from "../../components/Loader";
 import { useMediaQuery } from "@mantine/hooks";
+import { exchangeWallets } from "../../apiConfig";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -69,13 +70,18 @@ export default function LittleChart({ holders, totalSupply, decimal }) {
 
   const whalesCount = processedHolders.filter(
     (holder) => holder.ownership > 0.5
-  ).length;
+  );
+
+  const filteredWhales = whalesCount.filter(
+    (holder) => !exchangeWallets.includes(holder.address)
+  );
+  console.log(filteredWhales.length);
 
   console.log("1", top3Holders, "2", top10Holders, "3", whalesCount);
   const topDetails = {
-    top3: top3Holders,
-    top10: top10Holders,
-    whales: whalesCount,
+    top3: top3Holders.toFixed(2),
+    top10: top10Holders.toFixed(2),
+    whales: filteredWhales.length,
   };
   return <TokenHoldersChart data={chartData} topDetails={topDetails} />;
 }
@@ -83,6 +89,18 @@ export default function LittleChart({ holders, totalSupply, decimal }) {
 const TokenHoldersChart = ({ data, topDetails }) => {
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
   const isLargeScreen = useMediaQuery("(min-width: 991px)");
+  if (!data?.holders?.length) {
+    return (
+      <Card
+        w={"100%"}
+        bg={"transparent"}
+        className="w-full bg-transparent border-none"
+      >
+        <Title className="text-white">No holder data available</Title>
+      </Card>
+    );
+  }
+
   // Define modern, smooth colors
   const backgroundColors = [
     "rgba(255, 99, 132, 0.7)", // Pastel Red
@@ -190,7 +208,7 @@ const TokenHoldersChart = ({ data, topDetails }) => {
             Top 3 Holders :
           </Text>
           <Text size={isSmallScreen ? 12 : 16} color="white">
-            {topDetails.top3}
+            {topDetails.top3} %
           </Text>
         </Flex>
 
@@ -199,7 +217,7 @@ const TokenHoldersChart = ({ data, topDetails }) => {
             Top 10 Holders :
           </Text>
           <Text size={isSmallScreen ? 12 : 16} color="white">
-            {topDetails.top10}
+            {topDetails.top10} %
           </Text>
         </Flex>
       </Flex>
