@@ -90,7 +90,11 @@ export default function TableBox({
 
         {/* Holders Tab */}
         <Tabs.Panel value="Holders" pt="md">
-          <Flex justify={"center"} mb="md" px={isSmallScreen ? 5 : 25}>
+          <Flex
+            justify={"center"}
+            mb={isSmallScreen ? "xs" : "md"}
+            px={isSmallScreen ? 5 : 25}
+          >
             <LittleChart
               holders={holdersData.rows}
               totalSupply={tokenInfo.totalSupply}

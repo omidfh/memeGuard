@@ -139,6 +139,7 @@ const TokenHoldersChart = ({ data, topDetails }) => {
     responsive: true,
     maintainAspectRatio: false,
     cutout: "60%",
+
     layout: {
       padding: {
         left: 10,
@@ -150,7 +151,7 @@ const TokenHoldersChart = ({ data, topDetails }) => {
     },
     plugins: {
       legend: {
-        position: "right",
+        position: isSmallScreen ? "bottom" : "right",
         labels: {
           color: "#ffffff",
           usePointStyle: true,
@@ -160,6 +161,8 @@ const TokenHoldersChart = ({ data, topDetails }) => {
             family: "system-ui",
           },
         },
+        maxHeight: 150,
+        fullWidth: true,
       },
       tooltip: {
         backgroundColor: "rgba(255, 255, 255, 0.615)",
@@ -176,13 +179,13 @@ const TokenHoldersChart = ({ data, topDetails }) => {
     <Flex
       justify={"space-between"}
       align={"center"}
-      mah={300}
+      mah={400}
       w={"100%"}
       px={isLargeScreen ? "20%" : 1}
     >
-      <Flex justify={"start"} direction={"column"}>
+      <Flex justify={"start"} align={"center"} direction={"column"}>
         <Text color="white">Top 5 Holders</Text>
-        <Box w={isSmallScreen ? "180px" : "300px"}>
+        <Box w={isSmallScreen ? "160px" : "300px"} h={"100%"}>
           <Doughnut data={chartData} options={options} />
         </Box>
       </Flex>
