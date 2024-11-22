@@ -193,28 +193,28 @@ const TokenHoldersChart = ({ data, topDetails }) => {
         mt={25}
       >
         <Flex gap={10}>
-          <Text size={isSmallScreen ? 12 : 16} color="white">
+          <Text size={isSmallScreen ? 10 : 16} color="white">
             Total Whales :
           </Text>
-          <Text size={isSmallScreen ? 12 : 16} color="white">
+          <Text size={isSmallScreen ? 10 : 16} color="white">
             {topDetails.whales}
           </Text>
         </Flex>
 
         <Flex gap={10}>
-          <Text size={isSmallScreen ? 12 : 16} color="white">
+          <Text size={isSmallScreen ? 10 : 16} color="white">
             Top 3 Holders :
           </Text>
-          <Text size={isSmallScreen ? 12 : 16} color="white">
+          <Text size={isSmallScreen ? 10 : 16} color="white">
             {topDetails.top3} %
           </Text>
         </Flex>
 
         <Flex gap={10}>
-          <Text size={isSmallScreen ? 12 : 16} color="white">
+          <Text size={isSmallScreen ? 10 : 16} color="white">
             Top 10 Holders :
           </Text>
-          <Text size={isSmallScreen ? 12 : 16} color="white">
+          <Text size={isSmallScreen ? 10 : 16} color="white">
             {topDetails.top10} %
           </Text>
         </Flex>
