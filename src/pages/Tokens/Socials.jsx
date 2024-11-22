@@ -1,17 +1,6 @@
+import { Card, Flex, Text, Divider, ActionIcon, Avatar } from "@mantine/core";
 import {
-  Card,
-  Flex,
-  Text,
-  Divider,
-  ActionIcon,
-  Center,
-  Avatar,
-} from "@mantine/core";
-import {
-  IconBrandFacebook,
-  IconBrandReddit,
   IconBrandTelegram,
-  IconBrandGithub,
   IconBrandX,
   IconBrandInstagram,
   IconWorldWww,
@@ -20,7 +9,6 @@ import {
 
 export default function Socials({ data }) {
   //EQAZwJdXCZoO9JIbwBTL2a_zzOAPheLICa4YG7lNIlDZzMmx
-  console.log(data);
 
   function getSocialLink(link) {
     if (Array.isArray(link)) return link[0];
@@ -103,8 +91,6 @@ export default function Socials({ data }) {
       color: "yellow.7",
     },
   ];
-
-  console.log(socialLinks);
 
   return (
     <Card

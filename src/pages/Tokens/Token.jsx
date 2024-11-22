@@ -17,7 +17,7 @@ export default function Token() {
   const { id } = useParams();
   const { data: tokenInfo, isFetching, error } = useTokenInfo(id);
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
-  const [holderLimit, setHolderLimit] = useState(10);
+  const [holderLimit, setHolderLimit] = useState(15);
   const {
     data: price,
     isFetching: isFetching2,
@@ -39,7 +39,6 @@ export default function Token() {
     error: error5,
   } = useTokenTopBuys(id);
 
-  console.log(tokenInfo);
   if (isFetching || isFetching2) return <CustomLoader />;
   return (
     <Flex
@@ -60,7 +59,7 @@ export default function Token() {
         breakpoints={[{ maxWidth: "md", cols: 1 }]}
       >
         <Crypto data={tokenInfo} price={price} />
-        <Score holders={holders} />
+        <Score holders={holders} tokenInfo={tokenInfo} topTrades={topTrades} />
         <Socials data={tokenInfo} />
       </SimpleGrid>
       <Flex maw={"100%"} justify={"center"} pb={0} pt={"md"} px={"lg"}>

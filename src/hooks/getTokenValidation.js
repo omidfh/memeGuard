@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { tonApi } from "../apiConfig";
 
 export function useTokenValidation(address, enabled) {
-  console.log(address);
   return useQuery({
     queryKey: ["token-validate", address],
     queryFn: () => checkJettonMaster(address),

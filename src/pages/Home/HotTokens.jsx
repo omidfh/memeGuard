@@ -7,7 +7,6 @@ import { useMediaQuery } from "@mantine/hooks";
 function HotTokensSection() {
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
   const tokensToShow = isSmallScreen ? tokenAddress.slice(0, 3) : tokenAddress;
-  console.log(tokensToShow);
 
   return (
     <Flex

@@ -3,7 +3,6 @@ import { tonApi } from "../apiConfig";
 import { Address } from "@ton/core";
 
 export function useTokenHolders({ address, holderLimit }) {
-  console.log(address, holderLimit);
   return useQuery({
     queryKey: ["token-holders", address, holderLimit],
     queryFn: () => fetchTokenHolders({ contractAddress: address, holderLimit }),

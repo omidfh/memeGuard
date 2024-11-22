@@ -7,6 +7,7 @@ import CustomLoader from "../../components/Loader";
 import { useMediaQuery } from "@mantine/hooks";
 import { exchangeWallets } from "../../apiConfig";
 import AnimatedTokenHolders from "./TokenHoldersInForm";
+import { Address } from "@ton/core";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -55,7 +56,7 @@ export default function LittleChart({ holders, totalSupply, decimal }) {
     return answer;
   }
   const processedHolders = fetchedHolders.map((holder) => ({
-    address: holder.address,
+    address: Address.normalize(holder.address),
     balance: holder.balance,
     ownership: parseFloat(ownershipCalc(holder.balance, totalSupply)),
   }));
@@ -75,9 +76,7 @@ export default function LittleChart({ holders, totalSupply, decimal }) {
   const filteredWhales = whalesCount.filter(
     (holder) => !exchangeWallets.includes(holder.address)
   );
-  console.log(filteredWhales.length);
 
-  console.log("1", top3Holders, "2", top10Holders, "3", whalesCount);
   const topDetails = {
     top3: top3Holders.toFixed(2),
     top10: top10Holders.toFixed(2),
