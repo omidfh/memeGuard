@@ -59,7 +59,15 @@ export default function Token() {
         breakpoints={[{ maxWidth: "md", cols: 1 }]}
       >
         <Crypto data={tokenInfo} price={price} />
-        <Score holders={holders} tokenInfo={tokenInfo} topTrades={topTrades} />
+        {isFetching3 ? (
+          <CustomLoader />
+        ) : (
+          <Score
+            holders={holders}
+            tokenInfo={tokenInfo}
+            topTrades={topTrades}
+          />
+        )}
         <Socials data={tokenInfo} />
       </SimpleGrid>
       <Flex maw={"100%"} justify={"center"} pb={0} pt={"md"} px={"lg"}>
