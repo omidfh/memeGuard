@@ -166,6 +166,8 @@ export default function Socials({ data }) {
         <Flex justify="space-around">
           {customLinks.map((icon, index) => (
             <ActionIcon
+              color={icon.isActive ? icon.color : "gray"}
+              bg={icon.isActive ? "white" : "gray.5"}
               key={index}
               size="xl"
               radius="xl"
