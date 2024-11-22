@@ -1,4 +1,12 @@
-import { Card, Flex, Text, Divider, ActionIcon, Center } from "@mantine/core";
+import {
+  Card,
+  Flex,
+  Text,
+  Divider,
+  ActionIcon,
+  Center,
+  Avatar,
+} from "@mantine/core";
 import {
   IconBrandFacebook,
   IconBrandReddit,
@@ -6,10 +14,18 @@ import {
   IconBrandGithub,
   IconBrandX,
   IconBrandInstagram,
+  IconWorldWww,
+  IconBrandTiktok,
 } from "@tabler/icons-react";
 
 export default function Socials({ data }) {
+  //EQAZwJdXCZoO9JIbwBTL2a_zzOAPheLICa4YG7lNIlDZzMmx
   console.log(data);
+
+  function getSocialLink(link) {
+    if (Array.isArray(link)) return link[0];
+    return link;
+  }
 
   function normalizeUrl(url) {
     if (!url) return "";
@@ -23,7 +39,7 @@ export default function Socials({ data }) {
       icon: <IconBrandX size={20} />,
       platform: "X",
       label: "X",
-      link: data.socials?.twitter[0] || "",
+      link: getSocialLink(data.socials?.twitter) || "",
       isActive: !!data.socials?.twitter,
       color: "black",
     },
@@ -31,76 +47,64 @@ export default function Socials({ data }) {
       icon: <IconBrandInstagram size={20} />,
       platform: "Instagram",
       label: "Instagram",
-      link: data.socials?.instagram[0] || "",
+      link: getSocialLink(data.socials?.instagram) || "",
       isActive: !!data.socials?.instagram,
       color: "red.7",
     },
     {
-      icon: <IconBrandReddit size={20} />,
-      platform: "Reddit",
-      label: "Reddit",
-      isActive: !!data.socials?.reddit,
-      color: "orange",
+      icon: <IconWorldWww size={20} />,
+      platform: "website",
+      label: "Website",
+      link: getSocialLink(data.socials?.websites) || "",
+      isActive: !!data.socials?.websites,
+      color: "blue.7",
     },
     {
       icon: <IconBrandTelegram size={20} />,
       platform: "Telegram",
       label: "Telegram",
-      link: data.socials?.telegram[0] || "",
+      link: getSocialLink(data.socials?.telegram) || "",
       isActive: !!data.socials?.telegram,
       color: "blue.7",
     },
   ];
   ////custom links
-  const customLinks = [{}];
-
-  console.log(socialLinks);
-
-  const additionalIcons = [
+  const customLinks = [
     {
-      icon: <IconBrandGithub size={20} />,
-      label: "GitHub",
+      icon: <IconBrandTiktok size={25} />,
+      platform: "Tiktok",
+      label: "Tiktok",
+      link: getSocialLink(data.socials?.tiktok) || "",
+      isActive: !!data.socials?.tiktok,
+      color: "black",
     },
     {
-      icon: (
-        <div
-          style={{
-            backgroundColor: "purple",
-            borderRadius: "50%",
-            width: 20,
-            height: 20,
-          }}
-        />
-      ),
-      label: "Custom 1",
+      icon: <Avatar src={"../../src/assets/dex.png"} size={25} />,
+      platform: "dexscreener",
+      label: "Dexscreener",
+      link: getSocialLink(data.socials?.dexscreener) || "",
+      isActive: !!data.socials?.dexscreener,
+      color: "yellow.7",
     },
     {
-      icon: (
-        <div
-          style={{
-            backgroundColor: "green",
-            borderRadius: "50%",
-            width: 20,
-            height: 20,
-          }}
-        />
-      ),
-      label: "Custom 2",
+      icon: <Avatar src={"../../src/assets/dyor.ico"} size={25} />,
+      platform: "dyor",
+      label: "dyor",
+      link: getSocialLink(data.socials?.dyor) || "",
+      isActive: !!data.socials?.dyor,
+      color: "yellow.7",
     },
     {
-      icon: (
-        <div
-          style={{
-            backgroundColor: "indigo",
-            borderRadius: "50%",
-            width: 20,
-            height: 20,
-          }}
-        />
-      ),
-      label: "Custom 3",
+      icon: <Avatar src={"../../src/assets/geko.png"} size={25} />,
+      platform: "gekoterminal",
+      label: "gekoterminal",
+      link: getSocialLink(data.socials?.gekoterminal) || "",
+      isActive: !!data.socials?.gekoterminal,
+      color: "yellow.7",
     },
   ];
+
+  console.log(socialLinks);
 
   return (
     <Card
@@ -160,13 +164,16 @@ export default function Socials({ data }) {
 
         {/* PAIIN */}
         <Flex justify="space-around">
-          {additionalIcons.map((icon, index) => (
+          {customLinks.map((icon, index) => (
             <ActionIcon
               key={index}
               size="xl"
               radius="xl"
               variant="light"
-              // style={{ color: "white" }}
+              component="a" // Render as <a> element
+              href={icon.isActive ? normalizeUrl(icon.link) : null} // Set the link URL
+              target="_blank" // Open in a new tab
+              rel="noopener noreferrer"
             >
               {icon.icon}
             </ActionIcon>
