@@ -18,7 +18,6 @@ export default function TableBox({
   const mainTabs = ["Holders", "Top Trades", "Top Buy", "Bubble Map"];
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
   // Calculate total balance
-  console.log(holders);
   // Process holders data
   const holdersData = {
     headers: ["Wallet", "Ownership", "Amount"],
@@ -91,8 +90,12 @@ export default function TableBox({
 
         {/* Holders Tab */}
         <Tabs.Panel value="Holders" pt="md">
-          <Flex justify={"center"} mb="md">
-            <LittleChart holders={holdersData.rows} />
+          <Flex justify={"center"} mb="md" px={isSmallScreen ? 5 : 25}>
+            <LittleChart
+              holders={holdersData.rows}
+              totalSupply={tokenInfo.totalSupply}
+              decimal={decimal}
+            />
           </Flex>
 
           {/* Responsive Table for Holders */}
