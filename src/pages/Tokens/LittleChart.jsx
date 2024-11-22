@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import CustomLoader from "../../components/Loader";
 import { useMediaQuery } from "@mantine/hooks";
 import { exchangeWallets } from "../../apiConfig";
+import AnimatedTokenHolders from "./TokenHoldersInForm";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -177,15 +178,15 @@ const TokenHoldersChart = ({ data, topDetails }) => {
       align={"center"}
       mah={300}
       w={"100%"}
-      px={isLargeScreen ? "20%" : "auto"}
+      px={isLargeScreen ? "20%" : 1}
     >
       <Flex justify={"start"} direction={"column"}>
         <Text color="white">Top 5 Holders</Text>
-        <Box w={isSmallScreen ? "200px" : "300px"}>
+        <Box w={isSmallScreen ? "180px" : "300px"}>
           <Doughnut data={chartData} options={options} />
         </Box>
       </Flex>
-      <Flex
+      {/* <Flex
         direction={"column"}
         align={"center"}
         justify={"center"}
@@ -218,7 +219,8 @@ const TokenHoldersChart = ({ data, topDetails }) => {
             {topDetails.top10} %
           </Text>
         </Flex>
-      </Flex>
+      </Flex> */}
+      <AnimatedTokenHolders topDetails={topDetails} />
     </Flex>
   );
 };
