@@ -47,7 +47,6 @@ export default function LittleChart({ holders, totalSupply, decimal }) {
     ],
   };
   function ownershipCalc(holderBalance) {
-    //holderBalance = each fetchedHolder.balance
     const answer = (
       (+holderBalance / Math.pow(10, +decimal) / +totalSupply) *
       100
@@ -101,13 +100,12 @@ const TokenHoldersChart = ({ data, topDetails }) => {
     );
   }
 
-  // Define modern, smooth colors
   const backgroundColors = [
-    "rgba(255, 99, 132, 0.7)", // Pastel Red
-    "rgba(54, 162, 235, 0.7)", // Pastel Blue
-    "rgba(255, 206, 86, 0.7)", // Pastel Yellow
-    "rgba(75, 192, 192, 0.7)", // Pastel Green
-    "rgba(126, 75, 192, 0.7)", // Pastel Green
+    "rgba(255, 99, 132, 0.7)",
+    "rgba(54, 162, 235, 0.7)",
+    "rgba(255, 206, 86, 0.7)",
+    "rgba(75, 192, 192, 0.7)",
+    "rgba(126, 75, 192, 0.7)",
   ];
 
   const hoverBackgroundColors = [
@@ -115,6 +113,7 @@ const TokenHoldersChart = ({ data, topDetails }) => {
     "rgba(54, 162, 235, 0.9)",
     "rgba(255, 206, 86, 0.9)",
     "rgba(75, 192, 192, 0.9)",
+    "rgba(126, 75, 192, 0.7)",
   ];
 
   // Data for the chart
@@ -135,7 +134,6 @@ const TokenHoldersChart = ({ data, topDetails }) => {
     ],
   };
 
-  // Chart options for styling
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -143,7 +141,7 @@ const TokenHoldersChart = ({ data, topDetails }) => {
     layout: {
       padding: {
         left: 10,
-        right: 30, // Increased right padding for labels
+        right: 30,
         top: 10,
         bottom: 10,
         padding: 15,
@@ -157,7 +155,7 @@ const TokenHoldersChart = ({ data, topDetails }) => {
           usePointStyle: true,
           pointStyle: "circle",
           font: {
-            size: isSmallScreen ? 9 : 12, // Adjusted font size
+            size: isSmallScreen ? 9 : 12,
             family: "system-ui",
           },
         },
