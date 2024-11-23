@@ -8,6 +8,7 @@ import {
   Flex,
   Divider,
 } from "@mantine/core";
+import { FaStar } from "react-icons/fa";
 
 function AboutSection() {
   const features = [
@@ -15,7 +16,7 @@ function AboutSection() {
       title: "Top Holders",
       description:
         "Discover the largest holders of any token with ease. Our tool provides detailed insights into wallet distributions, making it simple to understand where the power lies.",
-      icon: "🍯", // Replace this with an image or Mantine Icon if needed
+      icon: <FaStar color="yellow" />, // Replace this with an image or Mantine Icon if needed
     },
     {
       title: "Top Traders & Buyers",

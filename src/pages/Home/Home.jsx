@@ -13,12 +13,13 @@ import {
 } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { IconClipboard, IconSearch } from "@tabler/icons-react";
-import image from "../../assets/th.jpeg";
+import image from "@/assets/secondlogo.png";
 import HotTokensSection from "./HotTokens";
 import AboutSection from "./About";
 import { useTokenValidation } from "../../hooks/getTokenValidation";
 import { useNavigate } from "react-router";
-import CustomLoader from "../../components/Loader";
+import BlobLoader from "../BlobLoader";
+import { FaRobot, FaTelegram } from "react-icons/fa";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -62,7 +63,7 @@ export default function Home() {
       console.error("Failed to read clipboard contents: ", err);
     }
   };
-  if (isFetching) return <CustomLoader />;
+  if (isFetching) return <BlobLoader size={150} />;
   return (
     <Container maw={"100%"}>
       {/* Hero Section */}
@@ -143,6 +144,41 @@ export default function Home() {
         investments on TON. With real-time data, an intuitive interface, and
         detailed analysis tools, we empower you to invest with confidence.
       </Text>
+
+      <Flex
+        w={"100%"}
+        justify={"space-evenly"}
+        my={10}
+        p={25}
+        sx={{ borderRadius: "25px" }}
+        gap={15}
+      >
+        {/* <ActionIcon
+              component="a"
+              // href={link.isActive ? normalizeUrl(link.link) : null}
+              target="_blank"
+              rel="noopener noreferrer"
+            > */}
+        <Flex align={"center"} gap={5}>
+          <FaTelegram color="blue" size={25} />
+          <Text color="white">TG Channel</Text>
+        </Flex>
+        {/* </ActionIcon> */}
+
+        {/* <ActionIcon
+              component="a"
+              // href={link.isActive ? normalizeUrl(link.link) : null}
+              target="_blank"
+              rel="noopener noreferrer"
+            > */}
+        <Flex align={"center"} gap={5}>
+          <FaRobot color="white" size={25} />
+          <Text lineClamp={1} color="white">
+            TG Bot
+          </Text>
+        </Flex>
+        {/* </ActionIcon> */}
+      </Flex>
     </Container>
   );
 }

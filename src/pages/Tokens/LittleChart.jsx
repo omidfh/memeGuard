@@ -1,9 +1,8 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Box, Card, Flex, Text, Title } from "@mantine/core";
+import { Box, Card, Flex, Loader, Text, Title } from "@mantine/core";
 import { useTokenHolders } from "../../hooks/getTokenHolders";
 import { useParams } from "react-router";
-import CustomLoader from "../../components/Loader";
 import { useMediaQuery } from "@mantine/hooks";
 import { exchangeWallets } from "../../apiConfig";
 import AnimatedTokenHolders from "./TokenHoldersInForm";
@@ -19,7 +18,7 @@ export default function LittleChart({ holders, totalSupply, decimal }) {
     error: error3,
   } = useTokenHolders({ address: id, holderLimit: 1000 });
 
-  if (isFetching3) return <CustomLoader />;
+  if (isFetching3) return <Loader color="indigo" variant="bars" />;
   function setAddress(address) {
     return `${address.slice(0, 5)}...${address.slice(address.length - 5, -1)}`;
   }

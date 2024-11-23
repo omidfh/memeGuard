@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Text, Center, Stack } from "@mantine/core";
+import { Card, Text, Center, Stack, Divider } from "@mantine/core";
 import GaugeChart from "react-gauge-chart";
 import { exchangeWallets } from "../../apiConfig";
 import { Address } from "@ton/core";
@@ -171,6 +171,14 @@ export default function Score({ holders, tokenInfo }) {
         </Text>
         <Text size="xs" color="gray.2">
           {currentDateTime}
+        </Text>
+      </Stack>
+      <Stack mt={20}>
+        <Text size={10} color="white">
+          <Divider my={5} />
+          MemeGuard strives to provide you with the best insights and
+          information, but remember—always do your own research (DYOR) before
+          making any decisions.
         </Text>
       </Stack>
     </Card>

@@ -5,7 +5,7 @@ import { Center, Loader, Text } from "@mantine/core";
 function CustomLoader({
   message = "Loading...",
   size = "md",
-  variant = "oval",
+  variant = "bars",
   color = "blue",
 }) {
   return (
