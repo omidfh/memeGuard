@@ -54,7 +54,7 @@ export default function Token() {
   return (
     <>
       <Flex
-        ml={isSmallScreen ? 90 : 55}
+        ml={isSmallScreen ? 90 : 60}
         p={10}
         sx={{ borderRadius: "25px", cursor: "pointer" }}
         bg={"rgba(236, 240, 241, 0.05)"}
