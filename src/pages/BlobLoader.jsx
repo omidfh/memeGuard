@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "@/assets/secondlogo.png";
+import logo from "@/assets/mainlogo.jpg";
 
-const BlobLoader = ({ size = 200 }) => {
+const BlobLoader = ({ size = 100 }) => {
   return (
     <div className="relative flex items-center justify-center">
       {/* Original logo */}
@@ -12,18 +12,25 @@ const BlobLoader = ({ size = 200 }) => {
         style={{
           width: size,
           height: size,
-          backgroundColor: "#006cff",
+          backgroundColor: "#c8d7eb",
         }}
-      />
-      <img
-        src={logo}
-        alt="Logo"
-        className="absolute w-3/4 h-3/4 object-contain z-10"
-      />
+      >
+        <img
+          src={logo}
+          style={{
+            maxWidth: "100px",
+            margin: "5px 5px",
+            borderRadius: "50px",
+            opacity: "0.6",
+          }}
+          alt="Logo"
+          className="absolute w-3/4 h-3/4 object-contain z-10"
+        />
+      </div>
 
       <style>{`
         .animate-morphBlob {
-          animation: morphBlob 1s infinite linear;
+          animation: morphBlob 3s infinite ease-out;
         }
 
         @keyframes morphBlob {

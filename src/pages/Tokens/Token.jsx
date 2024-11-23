@@ -58,7 +58,7 @@ export default function Token() {
         p={10}
         sx={{ borderRadius: "25px", cursor: "pointer" }}
         bg={"rgba(236, 240, 241, 0.05)"}
-        w={isSmallScreen ? "35%" : "20%"}
+        w={isSmallScreen ? "45%" : "20%"}
         align={"center"}
         gap={10}
         onClick={() => navigate(-1)}

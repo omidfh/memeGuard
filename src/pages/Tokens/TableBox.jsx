@@ -5,6 +5,9 @@ import LittleChart from "./LittleChart";
 import { useMediaQuery } from "@mantine/hooks";
 import { Address } from "@ton/core";
 import { IconCircleArrowDown } from "@tabler/icons-react";
+import { useNavigate } from "react-router";
+import { IoMdArrowForward } from "react-icons/io";
+import BlobLoader from "../BlobLoader";
 
 export default function TableBox({
   holders,
@@ -17,10 +20,11 @@ export default function TableBox({
   const [activeTab, setActiveTab] = useState("Holders");
   const mainTabs = ["Holders", "Top Trades", "Top Buy", "Bubble Map"];
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
+  const navigate = useNavigate();
   // Calculate total balance
   // Process holders data
   const holdersData = {
-    headers: ["Wallet", "Ownership", "Amount"],
+    headers: ["Wallet", "Ownership", "Amount", ""],
     rows: holders.map((holder) => ({
       address: Address.normalize(holder.address),
       ownership: (
@@ -33,7 +37,7 @@ export default function TableBox({
   };
 
   const topTradesData = {
-    headers: ["Wallet", "Volume", "Swaps"],
+    headers: ["Wallet", "Volume", "Swaps", ""],
     rows: topTrades.map((trade) => ({
       wallet: trade.walletAddress,
       volume: formatAmount(Number(trade.volume), decimal),
@@ -42,7 +46,7 @@ export default function TableBox({
   };
 
   const topBuyData = {
-    headers: ["Wallet", "Amount Bought", "Time"],
+    headers: ["Wallet", "Amount Bought", "Time", ""],
     rows: topBuys.map((buy) => ({
       wallet: buy.walletAddress,
       amount: formatAmount(Number(buy.amount), decimal),
@@ -67,6 +71,33 @@ export default function TableBox({
     });
     return formattedAmount;
   }
+
+  const handleRowClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const tableStyles = {
+    "thead tr th": {
+      color: "#ffffffcc",
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
+      fontSize: isSmallScreen ? "0.8rem" : "1rem",
+      borderColor: "rgba(255, 255, 255, 0.3) !important",
+    },
+    "tbody tr td": {
+      color: "#f0f0f0",
+      fontSize: isSmallScreen ? "0.8rem" : "1rem",
+      borderColor: "rgba(255, 255, 255, 0.3) !important",
+    },
+    "tbody tr": {
+      cursor: "pointer",
+      transition: "background-color 0.2s ease",
+      "&:hover": {
+        backgroundColor: "rgba(255, 255, 255, 0.1) !important",
+      },
+    },
+    borderCollapse: "separate",
+    borderColor: "rgba(255, 255, 255, 0.3) !important",
+  };
 
   return (
     <Box
@@ -116,18 +147,7 @@ export default function TableBox({
               verticalSpacing="sm"
               horizontalSpacing="md"
               miw={"430px"}
-              sx={{
-                "thead tr th": {
-                  color: "#ffffffcc",
-                  backgroundColor: "rgba(255, 255, 255, 0.05)",
-                  fontSize: isSmallScreen ? "0.8rem" : "1rem", // Adjust font size for small screens
-                },
-                "tbody tr td": {
-                  color: "#f0f0f0",
-                  fontSize: isSmallScreen ? "0.8rem" : "1rem", // Adjust font size for small screens
-                },
-                borderColor: "rgba(255, 255, 255, 0.1)",
-              }}
+              sx={tableStyles}
             >
               <thead>
                 <tr>
@@ -138,13 +158,29 @@ export default function TableBox({
               </thead>
               <tbody>
                 {holdersData.rows.map((row, index) => (
-                  <tr key={index}>
+                  <tr
+                    key={index}
+                    onClick={() =>
+                      handleRowClick(
+                        `https://tonscan.com/address/${row.address}`
+                      )
+                    }
+                    style={{
+                      cursor: "pointer",
+                      "&hover": {
+                        backgroundColor: "rgba(139, 13, 13, 0.171) !important",
+                      },
+                    }}
+                  >
                     <td align="left">{`${row.address.slice(
                       0,
                       6
                     )}...${row.address.slice(-4)}`}</td>
                     <td align="left">{row.ownership}%</td>
                     <td align="left">{row.amount}</td>
+                    <td>
+                      <Button variant="subtle">View</Button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -182,18 +218,7 @@ export default function TableBox({
               verticalSpacing="sm"
               horizontalSpacing="md"
               miw={"430px"}
-              sx={{
-                "thead tr th": {
-                  color: "#ffffffcc",
-                  backgroundColor: "rgba(255, 255, 255, 0.05)",
-                  fontSize: isSmallScreen ? "0.8rem" : "1rem", // Adjust font size for small screens
-                },
-                "tbody tr td": {
-                  color: "#f0f0f0",
-                  fontSize: isSmallScreen ? "0.8rem" : "1rem", // Adjust font size for small screens
-                },
-                borderColor: "rgba(255, 255, 255, 0.1)",
-              }}
+              sx={tableStyles}
             >
               <thead>
                 <tr>
@@ -204,13 +229,23 @@ export default function TableBox({
               </thead>
               <tbody>
                 {topTradesData.rows.map((row, index) => (
-                  <tr key={index}>
+                  <tr
+                    key={index}
+                    onClick={() =>
+                      handleRowClick(
+                        `https://tonscan.com/address/${row.wallet}`
+                      )
+                    }
+                  >
                     <td align="left">{`${row.wallet.slice(
                       0,
                       6
                     )}...${row.wallet.slice(-4)}`}</td>
                     <td align="left">{row.volume}</td>
                     <td align="left">{row.swaps}</td>
+                    <td>
+                      <Button variant="subtle">View</Button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -233,18 +268,7 @@ export default function TableBox({
               verticalSpacing="sm"
               horizontalSpacing="md"
               miw={"430px"}
-              sx={{
-                "thead tr th": {
-                  color: "#ffffffcc",
-                  backgroundColor: "rgba(255, 255, 255, 0.05)",
-                  fontSize: isSmallScreen ? "0.8rem" : "1rem", // Adjust font size for small screens
-                },
-                "tbody tr td": {
-                  color: "#f0f0f0",
-                  fontSize: isSmallScreen ? "0.8rem" : "1rem", // Adjust font size for small screens
-                },
-                borderColor: "rgba(255, 255, 255, 0.1)",
-              }}
+              sx={tableStyles}
             >
               <thead>
                 <tr>
@@ -255,13 +279,23 @@ export default function TableBox({
               </thead>
               <tbody>
                 {topBuyData.rows.map((row, index) => (
-                  <tr key={index}>
+                  <tr
+                    key={index}
+                    onClick={() =>
+                      handleRowClick(
+                        `https://tonscan.com/address/${row.wallet}`
+                      )
+                    }
+                  >
                     <td align="left">{`${row.wallet.slice(
                       0,
                       6
                     )}...${row.wallet.slice(-4)}`}</td>
                     <td align="left">{row.amount}</td>
                     <td align="left">{row.time}</td>
+                    <td>
+                      <Button variant="subtle">View</Button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -271,8 +305,9 @@ export default function TableBox({
 
         {/* Map Tab */}
         <Tabs.Panel value="Bubble Map" pt="md">
-          <Flex miw={"430px"} mih={50} justify={"center"}>
+          <Flex miw={"430px"} mih={500} justify={"center"} align={"center"}>
             <Text align="center" size="lg" color="#f0f0f0">
+              <BlobLoader />
               Coming Soon
             </Text>
           </Flex>

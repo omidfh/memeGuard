@@ -80,7 +80,7 @@ export default function Crypto({ data, price }) {
               {data.name}
             </Text>
           </Flex>
-          <Text size={12} color="white" weight={600}>
+          <Text size={18} color="white" weight={600}>
             {price.price} $
           </Text>
         </Flex>
