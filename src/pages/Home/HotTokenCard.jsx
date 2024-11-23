@@ -66,30 +66,9 @@ export default function HotTokenCard({ address }) {
         </Text>
 
         {/* Price Changes */}
-        {/* <Flex justify="space-between" align={"center"} mt="md" width="100%">
-          {price?.diff_24?.startsWith("−") && (
-            <RiArrowDownSFill color="red" size={18} />
-          )}
-          {price?.diff_24?.startsWith("+") && (
-            <RiArrowUpSFill color="green" size={20} />
-          )}
-          <Text
-            color={
-              price?.diff_24?.startsWith("-")
-                ? "red"
-                : price?.diff_24?.startsWith("+")
-                ? "green"
-                : "white"
-            }
-            size="xs"
-          >
-            {price?.diff_24}
-          </Text>
-        </Flex> */}
 
         {/* Risk Score */}
         <Badge
-          // color={token.riskScore > 5 ? "red" : "green"}
           color={
             price?.diff_24?.startsWith("-")
               ? "red"
@@ -121,14 +100,6 @@ export default function HotTokenCard({ address }) {
             </Text>
           </Flex>
         </Badge>
-
-        {/* Social and Issues */}
-        <Text color="dimmed" size="sm" mt="sm">
-          {token.socials}
-        </Text>
-        {/* {token.issues.map((issue, idx) => ( */}
-
-        {/* ))} */}
       </Flex>
     </Card>
   );

@@ -12,21 +12,21 @@ import {
 function AboutSection() {
   const features = [
     {
-      title: "HoneyPot",
+      title: "Top Holders",
       description:
-        "Identify and steer clear of malicious tokens with our advanced Honeypot Detector. Gain insights on token taxes, holding and transfer limits to make informed decisions.",
+        "Discover the largest holders of any token with ease. Our tool provides detailed insights into wallet distributions, making it simple to understand where the power lies.",
       icon: "🍯", // Replace this with an image or Mantine Icon if needed
     },
     {
-      title: "Risk Assessment",
+      title: "Top Traders & Buyers",
       description:
-        "Access the most precise risk ratings for tokens with our tool’s thorough analysis of over 25 smart contract and market condition parameters before buying into a token.",
+        "Analyze the most active traders and buyers for any token. Get a clear view of trading patterns and activity, all in a beautifully designed, user-friendly interface.",
       icon: "✔️", // Replace this with an image or Mantine Icon if needed
     },
     {
-      title: "Live Scam Alerts",
+      title: "Risk Score",
       description:
-        "We monitor suspicious tokens 24x7, and instantly send alerts through Twitter and Telegram channels when tokens turn into scams. Stay updated with live notifications.",
+        "Instantly assess token safety with our proprietary score. At a glance, know whether a coin is safe or risky, empowering you to make informed decisions with confidence.",
       icon: "🚨", // Replace this with an image or Mantine Icon if needed
     },
   ];
@@ -64,9 +64,10 @@ function AboutSection() {
           />
           <Flex p={"md"} align={"center"}>
             <Text size="lg" color="gray.4" ta={"left"}>
-              Our state-of-the-art rug pull detection feature employs
-              interactive charts and risk indicators, making it effortless for
-              users to evaluate token safety across multiple chains.
+              Our advanced whale tracking and analysis tool uses interactive
+              charts and intuitive metrics, making it effortless to evaluate
+              token activity, top holders, and safety risks across the TON
+              ecosystem.
             </Text>
           </Flex>
         </Flex>

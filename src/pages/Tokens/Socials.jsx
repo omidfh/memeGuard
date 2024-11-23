@@ -9,10 +9,12 @@ import {
 
 export default function Socials({ data }) {
   //EQAZwJdXCZoO9JIbwBTL2a_zzOAPheLICa4YG7lNIlDZzMmx
-
   function getSocialLink(link) {
-    if (Array.isArray(link)) return link[0];
-    return link;
+    if (Array.isArray(link)) {
+      return link[0];
+    } else {
+      return link;
+    }
   }
 
   function normalizeUrl(url) {

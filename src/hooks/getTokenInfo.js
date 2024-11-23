@@ -28,7 +28,6 @@ async function fetchTokenInfo(contractAddress) {
     admin?.address === burnerAddress || !admin?.address
       ? "revoked"
       : Address.normalize(admin?.address);
-
   // socials
   let links;
   let SOCIAL_MEDIA_TYPES;
@@ -65,7 +64,7 @@ async function fetchTokenInfo(contractAddress) {
     );
 
     if (socialType) {
-      socials[socialType[1]].push(link); // Now socials[socialType[1]] exists
+      socials[socialType[1]].push(link);
     }
     if (
       url.startsWith("http") &&
