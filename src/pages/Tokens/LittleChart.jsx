@@ -155,7 +155,7 @@ const TokenHoldersChart = ({ data, topDetails }) => {
           usePointStyle: true,
           pointStyle: "circle",
           font: {
-            size: isSmallScreen ? 9 : 12,
+            size: isSmallScreen ? 7 : 12,
             family: "system-ui",
           },
         },
@@ -183,7 +183,7 @@ const TokenHoldersChart = ({ data, topDetails }) => {
     >
       <Flex justify={"start"} align={"center"} direction={"column"}>
         <Text color="white">Top 5 Holders</Text>
-        <Box w={isSmallScreen ? "160px" : "300px"} h={"100%"}>
+        <Box w={isSmallScreen ? "170px" : "300px"} h={"100%"}>
           <Doughnut data={chartData} options={options} />
         </Box>
       </Flex>
