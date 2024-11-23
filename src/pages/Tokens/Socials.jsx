@@ -6,6 +6,9 @@ import {
   IconWorldWww,
   IconBrandTiktok,
 } from "@tabler/icons-react";
+import dex from "@/assets/dex.png";
+import dyor from "@/assets/dyor.ico";
+import geko from "@/assets/geko.png";
 
 export default function Socials({ data }) {
   //EQAZwJdXCZoO9JIbwBTL2a_zzOAPheLICa4YG7lNIlDZzMmx
@@ -69,7 +72,7 @@ export default function Socials({ data }) {
       color: "black",
     },
     {
-      icon: <Avatar src={"../../src/assets/dex.png"} size={25} />,
+      icon: <Avatar src={dex} size={25} />,
       platform: "dexscreener",
       label: "Dexscreener",
       link: getSocialLink(data.socials?.dexscreener) || "",
@@ -77,7 +80,7 @@ export default function Socials({ data }) {
       color: "yellow.7",
     },
     {
-      icon: <Avatar src={"../../src/assets/dyor.ico"} size={25} />,
+      icon: <Avatar src={dyor} size={25} />,
       platform: "dyor",
       label: "dyor",
       link: getSocialLink(data.socials?.dyor) || "",
@@ -85,7 +88,7 @@ export default function Socials({ data }) {
       color: "yellow.7",
     },
     {
-      icon: <Avatar src={"../../src/assets/geko.png"} size={25} />,
+      icon: <Avatar src={geko} size={25} />,
       platform: "gekoterminal",
       label: "gekoterminal",
       link: getSocialLink(data.socials?.gekoterminal) || "",

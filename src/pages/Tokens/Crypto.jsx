@@ -34,14 +34,14 @@ export default function Crypto({ data, price }) {
     }
   }
 
-  const handleCopy = () => {
+  const handleCopy = (text) => {
     navigator.clipboard
-      .writeText(id)
+      .writeText(text)
       .then(() => {
         // Success
         setNotification({
           title: "Copied",
-          message: "Address copied to clipboard",
+          message: "Text copied to clipboard",
           color: "green",
           icon: <IconCheck size={16} />,
         });
@@ -111,7 +111,7 @@ export default function Crypto({ data, price }) {
                 Address
               </Text>
               <ActionIcon
-                onClick={handleCopy}
+                onClick={() => handleCopy(id)}
                 color="white"
                 p={0}
                 pos={"absolute"}
@@ -155,6 +155,15 @@ export default function Crypto({ data, price }) {
             <Text color="white" size={12}>
               Owner
             </Text>
+            <ActionIcon
+              onClick={() => handleCopy(data.owner)}
+              color="white"
+              p={0}
+              pos={"absolute"}
+              left={80}
+            >
+              <IconCopy size={12} color="white" />
+            </ActionIcon>
             <Text size={12} align="center" color="white">
               {data.owner && data.owner.length > 10
                 ? data.owner.slice(0, 5) + "..." + id.slice(id.length - 5, -1)
