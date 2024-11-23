@@ -12,7 +12,7 @@ const BlobLoader = ({ size = 100 }) => {
         style={{
           width: size,
           height: size,
-          backgroundColor: "#558dd68a",
+          backgroundColor: "rgba(0, 22, 84, 0.8)",
         }}
       >
         <img
