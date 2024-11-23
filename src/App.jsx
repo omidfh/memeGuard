@@ -72,6 +72,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/token/:id" element={<Token />} />
+              <Route path="*" element={<Home />} />
             </Routes>
           </AppLayout>
         </Router>
