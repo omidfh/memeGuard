@@ -162,7 +162,7 @@ export default function TableBox({
                     key={index}
                     onClick={() =>
                       handleRowClick(
-                        `https://tonscan.com/address/${row.address}`
+                        `https://tonscan.org/address/${row.address}`
                       )
                     }
                     style={{
@@ -233,7 +233,7 @@ export default function TableBox({
                     key={index}
                     onClick={() =>
                       handleRowClick(
-                        `https://tonscan.com/address/${row.wallet}`
+                        `https://tonscan.org/address/${row.wallet}`
                       )
                     }
                   >
@@ -283,7 +283,7 @@ export default function TableBox({
                     key={index}
                     onClick={() =>
                       handleRowClick(
-                        `https://tonscan.com/address/${row.wallet}`
+                        `https://tonscan.org/address/${row.wallet}`
                       )
                     }
                   >
