@@ -63,6 +63,11 @@ export default function Home() {
       console.error("Failed to read clipboard contents: ", err);
     }
   };
+
+  const handleRowClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   if (isFetching) return <BlobLoader size={100} />;
   return (
     <Container maw={"100%"}>
@@ -159,7 +164,12 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             > */}
-        <Flex align={"center"} gap={5}>
+        <Flex
+          align={"center"}
+          gap={5}
+          onClick={() => handleRowClick(`https://t.me/memeguardton`)}
+          sx={{ cursor: "pointer" }}
+        >
           <FaTelegram color="blue" size={25} />
           <Text color="white">TG Channel</Text>
         </Flex>
@@ -171,7 +181,12 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             > */}
-        <Flex align={"center"} gap={5}>
+        <Flex
+          align={"center"}
+          gap={5}
+          onClick={() => handleRowClick(`t.me/Meme_guard_bot/MemeGuard`)}
+          sx={{ cursor: "pointer" }}
+        >
           <FaRobot color="white" size={25} />
           <Text lineClamp={1} color="white">
             TG Bot
