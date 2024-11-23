@@ -63,7 +63,7 @@ export default function Home() {
       console.error("Failed to read clipboard contents: ", err);
     }
   };
-  if (isFetching) return <BlobLoader size={150} />;
+  if (isFetching) return <BlobLoader size={100} />;
   return (
     <Container maw={"100%"}>
       {/* Hero Section */}

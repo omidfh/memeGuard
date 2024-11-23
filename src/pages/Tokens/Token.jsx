@@ -50,7 +50,7 @@ export default function Token() {
     error: error5,
   } = useTokenTopBuys(id);
 
-  if (isFetching || isFetching2) return <BlobLoader size={150} />;
+  if (isFetching || isFetching2) return <BlobLoader size={10} />;
   return (
     <>
       <Flex
