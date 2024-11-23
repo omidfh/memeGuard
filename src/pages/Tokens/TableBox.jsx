@@ -95,15 +95,14 @@ export default function TableBox({
         backgroundColor: "rgba(255, 255, 255, 0.1) !important",
       },
     },
-    borderCollapse: "separate",
-    borderColor: "rgba(255, 255, 255, 0.3) !important",
+
+    borderColor: "rgba(255, 255, 255, 0) !important",
   };
 
   return (
     <Box
       sx={{ marginTop: "2rem", borderRadius: "15px" }}
       bg="rgba(255, 255, 255, 0.1)"
-      p={isSmallScreen ? 3 : 5}
       w={isSmallScreen ? "80%" : "100%"}
       mx={isSmallScreen ? "auto" : 0}
       miw={"80%"}
