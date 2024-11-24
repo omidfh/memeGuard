@@ -86,9 +86,9 @@ export default function Score({ holders, tokenInfo }) {
 
     if (aditionalScore < 30) {
       setScoreStatus({ status: "Not Secure", color: "#f44336" });
-    } else if (aditionalScore >= 30 && aditionalScore < 50) {
+    } else if (aditionalScore >= 30 && aditionalScore < 60) {
       setScoreStatus({ status: "Low Security", color: "#ff9800" });
-    } else if (aditionalScore >= 50 && aditionalScore < 70) {
+    } else if (aditionalScore >= 60 && aditionalScore < 80) {
       setScoreStatus({ status: "Moderate Security", color: "#44ad71" });
     } else {
       setScoreStatus({ status: "High Security", color: "#4c7daf" });
