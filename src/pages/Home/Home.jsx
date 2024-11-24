@@ -185,7 +185,7 @@ export default function Home() {
           <Flex
             align={"center"}
             gap={5}
-            onClick={() => handleRowClick(`t.me/Meme_guard_bot/MemeGuard`)}
+            onClick={() => handleRowClick(`T.me/Meme_guard_bot/MemeGuard`)}
             sx={{ cursor: "pointer" }}
           >
             <FaRobot color="white" size={25} />
